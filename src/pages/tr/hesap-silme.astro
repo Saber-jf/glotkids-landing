@@ -1,0 +1,52 @@
+---
+/* Hesap silme (Google Play'in istediği web sayfası), Türkçe. İngilizcesi /delete-account. */
+import Legal from "../../layouts/Legal.astro";
+import Ctl from "../../components/Ctl.astro";
+import Kept from "../../components/Kept.astro";
+import { SITE } from "../../site";
+import { href } from "../../i18n";
+const lang = "tr" as const;
+---
+<Legal lang={lang} page="deletion" title="Hesabı ve verileri silme" eyebrow="Gizlilik"
+  description="GlotKids ebeveyn hesabını ve verilerini uygulamayla ya da uygulama olmadan nasıl silersiniz; ne silinir, ne kalır."
+  intro={`${SITE.name}'te veri üç yerde olabilir: ebeveyn hesabı, sunucumuzdaki ilerleme yedeği ve cihazdaki ilerleme. Silme ücretsizdir ve kimlik belgesi gerektirmez.`}
+  toc={[["app", "Uygulamadan"], ["noapp", "Uygulama olmadan"], ["backup", "Yalnızca yedek"], ["device", "Cihazdaki ilerleme"], ["what", "Ne silinir, ne kalır?"]]}>
+
+  <p class="meta">Uygulama: <b>{SITE.name}</b> · Geliştirici: <Ctl k="legalName" lang={lang} /></p>
+  <p>Hiç ebeveyn hesabı açmadıysanız sizin ya da çocuğunuz için bizde bir hesap ya da ilerleme yoktur; ilerleme yalnızca cihazdadır (aşağıya bakın).</p>
+
+  <h2 id="app">1. Uygulamadan</h2>
+  <ol>
+    <li><b>"Ebeveyn"</b>e dokunun ve yetişkin sorusunu cevaplayın.</li>
+    <li>Ebeveyn hesabı ekranında <b>"Hesabı sil"</b>e, sonra <b>"Evet, sil"</b>e dokunun.</li>
+  </ol>
+  <p>Hesabınız ve ilerleme yedeği silinir; hesaba bağlı diğer cihazlarda oturum kapanır. Bu cihazdaki ilerleme kalır (4. bölüm).</p>
+
+  <h2 id="noapp">2. Uygulama olmadan</h2>
+  <p><Ctl k="privacyEmail" lang={lang} link /> adresine <b>"Hesap silme – {SITE.name}"</b> konusuyla yazın; hesabın e-posta adresini ve nasıl giriş yaptığınızı (e-posta kodu, Google ya da Apple) belirtin. Apple'ın "E-postamı gizle" seçeneğini kullandıysanız kendi adresinizden yazın; hesabı sizinle basit bir yolla doğrularız. Talebi 30 gün içinde yerine getirir, e-postayla bildiririz.</p>
+
+  <h2 id="backup">3. Yalnızca ilerleme yedeği</h2>
+  <p>Hesabı korumak ama sunucumuzdaki ilerleme kopyasını kaldırmak için ebeveyn hesabı ekranındaki yedek silme seçeneğini kullanın ya da bize yazın. Sonrasında bir cihaz, siz onaylamadıkça ilerlemesini yeniden yüklemez.</p>
+
+  <h2 id="device">4. Cihazdaki ilerleme</h2>
+  <ul>
+    <li><b>Uygulamayı silmek</b> cihazdaki ilerlemeyi ve indirilen içeriği kaldırır.</li>
+    <li>Haritadaki <b>"Başa dön"</b> (yetişkin onayıyla) ilerlemeyi sıfırlar; hesap varsa yedek de sıfırlanır.</li>
+    <li>Cihazın kendi yedekleri (iCloud, Google) açıksa orada bir kopya kalabilir; Apple'ın ya da Google'ın ayarlarından yönetilir.</li>
+  </ul>
+
+  <h2 id="what">Ne silinir, ne kalır?</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Veri</th><th>Hesap silinince</th></tr></thead>
+    <tbody>
+      <tr><td>Hesap (e-posta, giriş yöntemi)</td><td>Silinir</td></tr>
+      <tr><td>Sunucumuzdaki ilerleme yedeği</td><td>Silinir</td></tr>
+      <tr><td>Cihazdaki ilerleme</td><td>Cihazda kalır (4. bölüm)</td></tr>
+      <tr><td>Hesabın silindiğine dair kayıt (e-posta adresi içermez)</td><td>Silmenin yapıldığını gösterebilmek için: <Kept k="deletionRecord" lang={lang} /></td></tr>
+      <tr><td>Sunucu kayıtları (IP adresi, istek)</td><td>Süresi dolunca silinir: <Kept k="serverLogs" lang={lang} /></td></tr>
+      <tr><td>Altyapı yedeklerimiz</td><td>Yedeğin süresi dolunca kalkar: <Kept k="infraBackups" lang={lang} />. Geri yükleme silinmiş hesapları asla geri getirmez.</td></tr>
+      <tr><td>Bizimle yazışmalar</td><td><Kept k="supportMail" lang={lang} />; isterseniz daha önce</td></tr>
+    </tbody>
+  </table></div>
+  <p>Ayrıntı: <a href={href("privacy", lang)}>Gizlilik Politikası</a> · <a href={href("request", lang)}>Veri sahibi başvurusu</a></p>
+</Legal>

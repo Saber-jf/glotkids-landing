@@ -1,0 +1,130 @@
+---
+import "../styles/global.css";
+import { SITE, CONTROLLER } from "../site";
+import { UI, ROUTES, href, type Lang, type Page } from "../i18n";
+
+interface Props { title: string; description: string; lang: Lang; page: Page | "404" }
+const { title, description, lang, page } = Astro.props;
+const t = UI[lang];
+const full = title === SITE.name
+  ? (lang === "en" ? `${SITE.name} — English words through play, for ages 4–8` : `${SITE.name} — çocuklar için oyunla İngilizce`)
+  : `${title} · ${SITE.name}`;
+const year = 2026;
+/* a draft (dev server, or `npm run build:draft`): a banner and noindex on every page */
+const draft = import.meta.env.DEV || process.env.DRAFT === "1";
+const base = SITE.url ?? "https://taslak.invalid";
+const other: Lang = lang === "en" ? "tr" : "en";
+const here = page === "404" ? (lang === "en" ? "/404" : "/tr/404") : ROUTES[page][lang];
+const there = page === "404" ? ROUTES.home[other] : ROUTES[page][other];
+const homeH = href("home", lang);
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{full}</title>
+    <meta name="description" content={description} />
+    {SITE.url && page !== "404" && <link rel="canonical" href={new URL(here, SITE.url).href} />}
+    {SITE.url && page !== "404" && ROUTES[page].en !== ROUTES[page].tr && (
+      <>
+        <link rel="alternate" hreflang="en" href={new URL(ROUTES[page].en, SITE.url).href} />
+        <link rel="alternate" hreflang="tr" href={new URL(ROUTES[page].tr, SITE.url).href} />
+        <link rel="alternate" hreflang="x-default" href={new URL(ROUTES[page].en, SITE.url).href} />
+      </>
+    )}
+    {draft && <meta name="robots" content="noindex, nofollow" />}
+    <meta property="og:title" content={full} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL("/img/film/film-9.jpg", base).href} />
+    <meta property="og:locale" content={lang === "en" ? "en_GB" : "tr_TR"} />
+    <meta name="theme-color" content="#fff8ee" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/FredokaTR-SemiBold.ttf" as="font" type="font/ttf" crossorigin />
+    <script is:inline>document.documentElement.classList.add("js");</script>
+  </head>
+  <body>
+    <a class="skip" href="#icerik">{t.skip}</a>
+    {draft && <div class="draft-bar" data-draft>{t.draft}</div>}
+    <header class="top">
+      <div class="wrap">
+        <a class="logo" href={homeH} aria-label={`${SITE.name}`}><span class="a">Glot</span><span class="b">Kids</span></a>
+        <nav id="nav" aria-label={lang === "en" ? "Main menu" : "Ana menü"}>
+          <a class="link" href={`${homeH}#nasil`}>{t.nav.how}</a>
+          <a class="link" href={`${homeH}#dunyalar`}>{t.nav.worlds}</a>
+          <a class="link" href={href("parents", lang)}>{t.nav.parents}</a>
+          <a class="link" href={href("privacy", lang)}>{t.nav.privacy}</a>
+          <a class="link" href={href("faq", lang)}>{t.nav.faq}</a>
+          <a class="link lang" href={there} hreflang={other} lang={other} aria-label={t.langLabel}>{t.langShort}</a>
+          <a class="btn coral" href={`${homeH}#indir`}>{t.nav.soon}</a>
+        </nav>
+        <div class="top-right">
+          <a class="lang-pill" href={there} hreflang={other} lang={other} aria-label={t.langLabel}>{t.langShort}</a>
+          <button class="btn white menu-btn" id="menu" aria-expanded="false" aria-controls="nav">{t.nav.menu}</button>
+        </div>
+      </div>
+    </header>
+
+    <main id="icerik">
+      <slot />
+    </main>
+
+    <footer class="foot">
+      <div class="wrap">
+        <div class="cols">
+          <div>
+            <a class="logo" href={homeH}><span class="a">Glot</span><span class="b">Kids</span></a>
+            <p style="margin-top:14px;max-width:24em">{t.footerBlurb}</p>
+            <p><a href={there} hreflang={other} lang={other}>{t.langName} →</a></p>
+          </div>
+          <div>
+            <h4>{t.footer.app}</h4>
+            <ul>
+              <li><a href={`${homeH}#nasil`}>{t.footer.how}</a></li>
+              <li><a href={`${homeH}#dunyalar`}>{t.footer.worlds}</a></li>
+              <li><a href={href("parents", lang)}>{t.footer.parents}</a></li>
+              <li><a href={href("faq", lang)}>{t.footer.faq}</a></li>
+              <li><a href={href("contact", lang)}>{t.footer.contact}</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>{t.footer.privacy}</h4>
+            <ul>
+              <li><a href={href("privacy", lang)}>{t.footer.policy}</a></li>
+              <li><a href={href("deletion", lang)}>{t.footer.deletion}</a></li>
+              <li><a href={href("kvkk", lang)} hreflang="tr">{t.footer.kvkk}</a></li>
+              {lang === "tr" && <li><a href={href("request", lang)}>{UI.tr.footer.request}</a></li>}
+            </ul>
+          </div>
+          <div>
+            <h4>{t.footer.other}</h4>
+            <ul>
+              <li><a href={href("terms", lang)}>{t.footer.terms}</a></li>
+              <li><a href={href("licenses", lang)}>{t.footer.licenses}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="small">
+          <span>© {year} {CONTROLLER.legalName ?? SITE.name}. {t.rights}</span>
+          <span>{t.noCookies} <a href={`${href("privacy", lang)}#site`}>{lang === "en" ? "Details" : "Ayrıntı"}</a></span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const btn = document.getElementById("menu");
+      const nav = document.getElementById("nav");
+      btn?.addEventListener("click", () => {
+        const open = nav?.classList.toggle("open");
+        btn.setAttribute("aria-expanded", String(!!open));
+      });
+      nav?.addEventListener("click", (e) => {
+        if ((e.target as HTMLElement).closest("a")) { nav.classList.remove("open"); btn?.setAttribute("aria-expanded", "false"); }
+      });
+      const io = new IntersectionObserver((es) => {
+        for (const e of es) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      }, { rootMargin: "0px 0px -8% 0px", threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+---
+/* Google Play's account-deletion web page: names the app and the developer as
+   in the store, works without the app, and says what is deleted and what is
+   kept. Behaviour per src/site.ts → APP. Turkish: /tr/hesap-silme. */
+import Legal from "../layouts/Legal.astro";
+import Ctl from "../components/Ctl.astro";
+import Kept from "../components/Kept.astro";
+import { SITE } from "../site";
+import { href } from "../i18n";
+const lang = "en" as const;
+---
+<Legal lang={lang} page="deletion" title="Delete your account and data" eyebrow="Privacy"
+  description="How to delete your GlotKids parent account and its data, with or without the app; what is deleted and what is kept."
+  intro={`${SITE.name}: data can be in three places — the parent account, the progress backup on our server, and the progress on the device. Deleting is free and needs no ID document.`}
+  toc={[["app", "In the app"], ["noapp", "Without the app"], ["backup", "Only the backup"], ["device", "Progress on the device"], ["what", "What is deleted, what is kept"]]}>
+
+  <p class="meta">App: <b>{SITE.name}</b> · Developer: <Ctl k="legalName" lang={lang} /></p>
+  <p>If you never opened a parent account, we hold no account or progress for you or your child: the progress is only on the device (see below).</p>
+
+  <h2 id="app">1. In the app</h2>
+  <ol>
+    <li>Tap <b>"Ebeveyn"</b> (Parent) and answer the grown-up question.</li>
+    <li>On the parent account screen, tap <b>"Hesabı sil"</b> (Delete account), then <b>"Evet, sil"</b> (Yes, delete).</li>
+  </ol>
+  <p>Your account and the progress backup are deleted, and other devices signed in to the account are signed out. The progress on this device stays (see section 4).</p>
+
+  <h2 id="noapp">2. Without the app</h2>
+  <p>Email <Ctl k="privacyEmail" lang={lang} link /> with the subject <b>"Delete account – {SITE.name}"</b>, and tell us the account's email address and how you signed in (email code, Google or Apple). If you used Apple's "Hide My Email", write from your own address and we will confirm the account with you in a simple way. We do this within 30 days and confirm by email.</p>
+
+  <h2 id="backup">3. Only the progress backup</h2>
+  <p>To keep the account but remove the progress copy on our server, use the option on the parent account screen to delete the backup, or email us. After that, a device will not upload its progress again unless you confirm it.</p>
+
+  <h2 id="device">4. Progress on the device</h2>
+  <ul>
+    <li><b>Deleting the app</b> removes the progress and downloaded content from the device.</li>
+    <li><b>"Başa dön"</b> on the map (with a grown-up's confirmation) resets the progress; with an account, the backup is reset too.</li>
+    <li>If your device's own backups (iCloud, Google) are on, a copy may remain there; it is managed in Apple's or Google's settings.</li>
+  </ul>
+
+  <h2 id="what">What is deleted, what is kept</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Data</th><th>When the account is deleted</th></tr></thead>
+    <tbody>
+      <tr><td>Account (email, sign-in method)</td><td>Deleted</td></tr>
+      <tr><td>Progress backup on our server</td><td>Deleted</td></tr>
+      <tr><td>Progress on the device</td><td>Stays on the device (section 4)</td></tr>
+      <tr><td>A record that the account was deleted, without the email address</td><td>Kept to show the deletion was done: <Kept k="deletionRecord" lang={lang} /></td></tr>
+      <tr><td>Server logs (IP address, request)</td><td>Deleted when their period ends: <Kept k="serverLogs" lang={lang} /></td></tr>
+      <tr><td>Our infrastructure backups</td><td>Removed when the backup expires: <Kept k="infraBackups" lang={lang} />. A restore never brings deleted accounts back.</td></tr>
+      <tr><td>Emails with us</td><td><Kept k="supportMail" lang={lang} />, or earlier if you ask</td></tr>
+    </tbody>
+  </table></div>
+  <p>More: <a href={href("privacy", lang)}>Privacy Policy</a></p>
+</Legal>

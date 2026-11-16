@@ -1,0 +1,15 @@
+---
+import Legal from "../layouts/Legal.astro";
+import Ctl from "../components/Ctl.astro";
+const lang = "en" as const;
+---
+<Legal lang={lang} page="contact" title="Contact and support" eyebrow="Contact" dated={false}
+  description="How to reach GlotKids for support, privacy questions and account deletion.">
+  <div class="table-scroll"><table><tbody>
+    <tr><th>App support, ideas, complaints</th><td><Ctl k="supportEmail" lang={lang} link /></td></tr>
+    <tr><th>Privacy, data requests, account deletion</th><td><Ctl k="privacyEmail" lang={lang} link /></td></tr>
+    <tr><th>Postal address</th><td><Ctl k="address" lang={lang} /></td></tr>
+    <tr><th>Company</th><td><Ctl k="legalName" lang={lang} /></td></tr>
+  </tbody></table></div>
+  <p>Please don't send your child's name, photo or other personal details; we don't need them to help. For a problem, the device model, the app version and the game are enough.</p>
+</Legal>

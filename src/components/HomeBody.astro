@@ -1,0 +1,603 @@
+---
+/* The home page, in either language. Words: src/home-text.ts, src/content.ts. */
+import Base from "../layouts/Base.astro";
+import "../styles/home.css";
+import Stores from "./Stores.astro";
+import { WORLDS, FAQ, WORD_COUNT, GAME_COUNT } from "../content";
+import { SITE } from "../site";
+import { H } from "../home-text";
+import { href, type Lang } from "../i18n";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = (v: { en: string; tr: string }) => v[lang];
+const FILM = [3, 9, 16, 22, 29, 35, 42, 48, 55, 61].map((s) => `/img/film/film-${s}.jpg`);
+const strip = [...FILM, ...FILM];
+const VOW_STYLE = ["--v:var(--coral);--vs:#ffe2d9;--vl:#ffc9b8", "--v:var(--sky);--vs:#d8f1ff;--vl:#a9dcf5", "--v:var(--lilac);--vs:#ece5ff;--vl:#d3c4ff", "--v:var(--leaf);--vs:#d6f5d9;--vl:#b4e3b9"];
+const VOW_ICON = [
+  '<path d="M8 17v7h5l9 6V11l-9 6H8z" fill="#fff"/><path d="M27 15c2 2.5 2 7.5 0 10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M6 6l28 28" stroke="#fff" stroke-width="4" stroke-linecap="round"/>',
+  '<path d="M20 5l12 5v9c0 8-5.5 13.5-12 16-6.5-2.5-12-8-12-16v-9z" fill="#fff"/><path d="M14.5 20l4 4 7-8" stroke="var(--sky)" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+  '<path d="M20 6l4.2 8.6 9.4 1.4-6.8 6.6 1.6 9.4L20 27.6 11.6 32l1.6-9.4-6.8-6.6 9.4-1.4z" fill="#fff"/><path d="M6 6l28 28" stroke="var(--lilac)" stroke-width="6" stroke-linecap="round"/><path d="M6 6l28 28" stroke="#fff" stroke-width="3" stroke-linecap="round"/>',
+  '<path d="M14 26c0-3-4-4-4-10a10 10 0 0 1 20 0c0 4-3 5-4.5 7.5S24 30 20 30" stroke="#fff" stroke-width="3.4" fill="none" stroke-linecap="round"/><path d="M16 16a4 4 0 0 1 8 0" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>',
+];
+const FEAT_STYLE = ["--fc:#ffd1c4;--fs:#ffe2d3", "--fc:#bfe7fb;--fs:#d8f1ff", "--fc:#c8ebcd;--fs:#d6f5d9", "--fc:#ffe08a;--fs:#fff0c2", "--fc:#ddd0ff;--fs:#ece5ff", "--fc:#ffc0cf;--fs:#ffdde6"];
+const FEAT_ICON = [
+  '<svg viewBox="0 0 24 24" fill="none" stroke="#d24c37" stroke-width="2.2" stroke-linecap="round"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="#ff8a5b" stroke="none"/><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg>',
+  '<img src="/img/hand.png" alt="" width="34" height="34" />',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="#3fa34d" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18h4l2-6 3 9 3-13 2 10h2"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="#e0a417" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5s1.2 1.8 3.5 1.8 3.5-1.8 3.5-1.8M9 9.5h.01M15 9.5h.01"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="#7c5ce0" stroke-width="2.2" stroke-linecap="round"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9l4 6M21 9l-4 6"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="#f2547d" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="4" width="14" height="16" rx="3"/><path d="M9 10h6M9 14h4"/></svg>',
+];
+const BEAT = [["#ffc9b8", "var(--coral)"], ["#bfe7fb", "var(--sky)"], ["#c8ebcd", "var(--leaf)"]];
+const SERIES = ["var(--coral)", "var(--sky)", "var(--leaf)"];
+const TICKS = ["background:var(--sky);border-bottom-color:var(--sky-lip)", "background:var(--sun);border-bottom-color:var(--sun-lip)", "background:var(--coral);border-bottom-color:var(--coral-lip)"];
+---
+<Base title={SITE.name} description={t(H.desc)} lang={lang} page="home">
+
+  <section class="hero">
+    <div class="sun" aria-hidden="true"></div>
+    <div class="cloud c1" aria-hidden="true"></div>
+    <div class="cloud c2" aria-hidden="true"></div>
+    <div class="cloud c3" aria-hidden="true"></div>
+
+    <div class="wrap hero-copy">
+      <span class="eyebrow">{t(H.eyebrow)}</span>
+      <h1>{t(H.h1a)}<em>{t(H.h1em)}</em>{t(H.h1b)}</h1>
+      <p class="lead">{t(H.lead)}</p>
+      <ul class="vows" aria-label={t(H.vowsLabel)}>
+        {H.vows.map(([b, s], i) => (
+          <li style={VOW_STYLE[i]}>
+            <span class="vi"><svg viewBox="0 0 40 40" aria-hidden="true" set:html={VOW_ICON[i]} /></span>
+            <b>{t(b)}</b><small>{t(s)}</small>
+          </li>
+        ))}
+      </ul>
+      <Stores lang={lang} />
+      <p class="parents-link"><a href={href("parents", lang)}>{t(H.parentsLink)}</a></p>
+    </div>
+
+    <div class="stage" id="stage" aria-hidden="true">
+      <div class="hills">
+        <svg viewBox="0 0 1440 300" preserveAspectRatio="none">
+          <path d="M0 150 C 220 70 420 90 640 140 S 1100 60 1440 120 V300 H0Z" fill="#a8e29a" />
+          <path d="M0 200 C 260 130 520 170 760 190 S 1200 140 1440 180 V300 H0Z" fill="#86d27a" />
+          <path d="M0 240 C 300 210 700 230 1000 236 S 1300 222 1440 230 V300 H0Z" fill="#6cc562" />
+          <g fill="#fff">
+            <circle cx="120" cy="262" r="5" /><circle cx="300" cy="276" r="4" /><circle cx="520" cy="258" r="5" />
+            <circle cx="860" cy="270" r="4" /><circle cx="1090" cy="262" r="5" /><circle cx="1300" cy="280" r="4" />
+          </g>
+          <g fill="#ffd95a">
+            <circle cx="120" cy="262" r="2" /><circle cx="300" cy="276" r="1.6" /><circle cx="520" cy="258" r="2" />
+            <circle cx="860" cy="270" r="1.6" /><circle cx="1090" cy="262" r="2" /><circle cx="1300" cy="280" r="1.6" />
+          </g>
+        </svg>
+      </div>
+      <div class="name"><span class="glot">Glot</span><span class="kids">Kids</span></div>
+      <div class="m kuki"><div class="lean"><div class="lot"></div></div></div>
+      <div class="m lili"><div class="lean"><div class="lot"></div></div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="nasil">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow">{t(H.howEyebrow)}</span>
+        <h2>{t(H.howH2)}</h2>
+        <p class="lead">{t(H.howLead)}</p>
+      </div>
+      <div class="beats">
+        {H.beats.map((b, i) => (
+          <div class="card beat reveal" style={`border-bottom-color:${BEAT[i]![0]}`}>
+            <span class="num" style={`background:${BEAT[i]![1]}`}>{i + 1}</span>
+            <h3>{t(b.h)}</h3>
+            <span class="say">{i === 0 ? <><b lang="en">banana</b> · {t(b.say)}</> : i === 1 ? <>{t(b.say)} <b lang="en">banana!</b></> : t(b.say)}</span>
+            <p>{t(b.p)}</p>
+          </div>
+        ))}
+      </div>
+      <div class="series reveal">
+        {H.series.map((x, i) => (
+          <div>
+            <span class="tag" style={`background:${SERIES[i]}`}>{t(x.tag)}</span>
+            <h3>{t(x.h)}</h3>
+            <p>{t(x.p)}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="journey" id="dunyalar">
+    <div class="wrap center sec-head reveal" style="padding-top:clamp(24px,4vw,48px);margin-bottom:0">
+      <span class="eyebrow">{t(H.worldsEyebrow)}</span>
+      <h2>{t(H.worldsH2)}</h2>
+      <p class="lead">{t(H.worldsLead(GAME_COUNT, WORD_COUNT))}</p>
+    </div>
+    <div class="j-scroll" id="journey">
+      <div class="j-sticky">
+        <div class="j-hint" aria-hidden="true">{t(H.hint)}</div>
+        <div class="j-track">
+          {WORLDS.map((w, i) => (
+            <article class="world" style={`--c:${w.c};--soft:${w.soft}`}>
+              <div>
+                <div class="n">{t(H.worldN(i + 1))}</div>
+                <h3>{t(w.name)}</h3>
+                <p>{t(w.text)}</p>
+                <div class="games">{w.games.map((g) => <span>{t(g)}</span>)}</div>
+                <div class="words" aria-label={t(H.wordsLabel)}>{w.words.map((x) => <span lang="en">{x}</span>)}</div>
+              </div>
+              <div class="shots">
+                <img src={w.shots[0]} alt={t(H.sceneAlt(t(w.name)))} loading="lazy" width="640" height="427" />
+                <img src={w.shots[1]} alt={t(H.shotAlt(t(w.name)))} loading="lazy" width="640" height="427" />
+              </div>
+            </article>
+          ))}
+          <article class="world more" style="--c:#7c5ce0;--soft:#ece5ff">
+            <div>
+              <div class="n">{t(H.more.n)}</div>
+              <h3>{t(H.more.h)}</h3>
+              <p>{t(H.more.p)}</p>
+              <div class="games">{H.more.games.map((g) => <span>{t(g)}</span>)}</div>
+              <div class="words"><span>…</span><span lang="en">and more!</span></div>
+            </div>
+            <div class="shots">
+              <img src="/img/film/film-48.jpg" alt={t(H.more.boat)} loading="lazy" width="640" height="360" />
+              <div class="mist" aria-hidden="true">
+                <img src="/img/map/mist-2.png" alt="" loading="lazy" /><img src="/img/map/mist-5.png" alt="" loading="lazy" /><img src="/img/map/mist-7.png" alt="" loading="lazy" />
+                <span>?</span>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="j-ground" aria-hidden="true"><div class="j-tufts"></div></div>
+        <div class="j-walkers" aria-hidden="true">
+          <div class="m kuki"><div class="lot"></div></div>
+          <div class="m lili"><div class="lot"></div></div>
+        </div>
+        <div class="j-dots" aria-hidden="true">{WORLDS.map((w) => <i style={`--c:${w.c}`}></i>)}<i style="--c:#7c5ce0"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec film">
+    <div class="wrap center sec-head reveal">
+      <span class="eyebrow">{t(H.filmEyebrow)}</span>
+      <h2>{t(H.filmH2)}</h2>
+      <p class="lead">{t(H.filmLead)}</p>
+    </div>
+    <div class="strip" aria-label={t(H.stripLabel)}>
+      {strip.map((src, i) => <img src={src} alt={i < FILM.length ? t(H.stillAlt) : ""} aria-hidden={i >= FILM.length ? "true" : undefined} loading="lazy" width="1280" height="720" />)}
+    </div>
+    <div class="wrap">
+      <div class="tv reveal">
+        <div class="screen">
+          <video src="/video/glimpse.mp4" poster="/img/film/film-9.jpg" muted loop playsinline preload="none" data-autoplay aria-label={t(H.videoLabel)}></video>
+        </div>
+        <div>
+          <h3 style="color:#fff">{t(H.tvH)}</h3>
+          <p style="color:#cfe0e8">{t(H.tvP)}</p>
+          <a class="btn" href="#indir" style="--face:var(--sun);--lip:var(--sun-lip)">{t(H.tvBtn)}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow">{t(H.nrEyebrow)}</span>
+        <h2>{t(H.nrH2)}</h2>
+        <p class="lead">{t(H.nrLead)}</p>
+      </div>
+      <div class="feats">
+        {H.feats.map(([h, p], i) => (
+          <div class="card feat reveal" style={FEAT_STYLE[i]}>
+            <div class="ic" set:html={FEAT_ICON[i]} />
+            <h3>{t(h)}</h3>
+            <p>{t(p)}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="sec trust" id="guven">
+    <div class="wrap trust-grid">
+      <div class="reveal">
+        <span class="eyebrow">{t(H.trustEyebrow)}</span>
+        <h2>{t(H.trustH2)}</h2>
+        <p class="lead">{t(H.trustLead)}</p>
+        <ul class="promises">
+          {H.promises.map(([b, s]) => <li><span class="tick">✓</span><div><b>{t(b)}</b><span>{t(s)}</span></div></li>)}
+        </ul>
+        <div class="ctas" style="justify-content:flex-start">
+          <a class="btn leaf" href={href("privacy", lang)}>{t(H.policyBtn)}</a>
+          <a class="btn white" href={href("parents", lang)}>{t(H.guideBtn)}</a>
+        </div>
+      </div>
+      <div class="gate reveal" aria-label={t(H.gateEyebrow)}>
+        <span class="eyebrow">{t(H.gateEyebrow)}</span>
+        <p style="margin:0;color:var(--ink-soft)">{t(H.gateP)}</p>
+        <div class="q" lang="tr">{t(H.gateQ)}</div>
+        <div class="keys" aria-hidden="true"><span>41</span><span>42</span><span>48</span></div>
+        <small>{t(H.gateSmall)}</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec grow" id="gelisim">
+    <div class="wrap grow-grid">
+      <div class="reveal">
+        <span class="eyebrow">{t(H.growEyebrow)}</span>
+        <h2>{t(H.growH2)}</h2>
+        <p class="lead">{t(H.growLead)}</p>
+        <ul class="promises grow-list">
+          {H.grow.map(([b, s], i) => <li><span class="tick" style={TICKS[i]}>✓</span><div><b>{t(b)}</b><span>{t(s)}</span></div></li>)}
+        </ul>
+        <p class="meta">{t(H.growMeta)}</p>
+      </div>
+      <div class="dash reveal" aria-label={t(H.dash.label)}>
+        <div class="dash-top"><b>{t(H.dash.title)}</b><span class="draft">{t(H.dash.draft)}</span></div>
+        <div class="dash-row"><span class="w" style="--c:#ff8a5b">{t(H.dash.rows[0]!)}</span><span class="bar"><i style="width:100%;--c:#ff8a5b"></i></span><span class="n">7/7 ✓</span></div>
+        <div class="dash-row"><span class="w" style="--c:#4cb5e8">{t(H.dash.rows[1]!)}</span><span class="bar"><i style="width:66%;--c:#4cb5e8"></i></span><span class="n">4/6</span></div>
+        <div class="dash-row"><span class="w" style="--c:#a78bfa">{t(H.dash.rows[2]!)}</span><span class="bar"><i style="width:0%;--c:#a78bfa"></i></span><span class="n">{t(H.dash.next)}</span></div>
+        <div class="dash-sub">{t(H.dash.sub)}</div>
+        <div class="dash-words">
+          <span lang="en" style="--c:#ff8a5b">banana</span><span lang="en" style="--c:#ff8a5b">egg</span><span lang="en" style="--c:#ff8a5b">cheese</span>
+          <span lang="en" style="--c:#4cb5e8">dog</span><span lang="en" style="--c:#4cb5e8">cat</span><span lang="en" style="--c:#4cb5e8" class="again">monkey</span>
+        </div>
+        <div class="dash-note"><span class="again-dot"></span> {t(H.dash.again)} <b lang="en">monkey</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head center reveal">
+        <span class="eyebrow">{t(H.faqEyebrow)}</span>
+        <h2>{t(H.faqH2)}</h2>
+      </div>
+      <div class="faq reveal">
+        {FAQ.slice(0, 5).map((f) => <details><summary>{t(f.q)}</summary><p>{t(f.a)}</p></details>)}
+      </div>
+      <p class="center" style="margin-top:22px"><a href={href("faq", lang)}>{t(H.faqAll)}</a></p>
+    </div>
+  </section>
+
+  <section class="sec get" id="indir">
+    <div class="wrap get-grid">
+      <div class="devices reveal" aria-hidden="true">
+        <div class="tablet"><div class="glass"><img src="/img/games/clothes-laundry.jpg" alt="" loading="lazy" width="960" height="640" /></div></div>
+        <div class="phone"><div class="glass"><img src="/img/games/animals-train.jpg" alt="" loading="lazy" width="960" height="640" /></div></div>
+        <div class="dancer" id="dancer"></div>
+      </div>
+      <div class="reveal">
+        <span class="eyebrow">{t(H.getEyebrow)}</span>
+        <h2>{t(H.getH2)}</h2>
+        <p class="lead">{t(H.getLead)}</p>
+        <Stores big align="start" lang={lang} />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import { mascot, gaitOf, advanceAt, planWalk, reduced, prefetch, type Mascot } from "../scripts/mascot";
+
+  prefetch("kuki"); prefetch("lili");
+  const still = reduced();
+  const FPS = 30;
+
+  /* ── the hero's meeting ────────────────────────────────────────────── */
+  async function hero() {
+    const stage = document.getElementById("stage")!;
+    const name = stage.querySelector<HTMLElement>(".name")!;
+    const kEl = stage.querySelector<HTMLElement>(".kuki")!;
+    const lEl = stage.querySelector<HTMLElement>(".lili")!;
+    const kLean = kEl.querySelector<HTMLElement>(".lean")!;
+    const lLean = lEl.querySelector<HTMLElement>(".lean")!;
+    const [K, L] = await Promise.all([mascot(kEl.querySelector(".lot")!, "kuki"), mascot(lEl.querySelector(".lot")!, "lili")]);
+
+    let W = 0, S = 0, kTo = 0, lTo = 0, kFrom = 0, lFrom = 0;
+    const measure = () => {
+      W = stage.clientWidth;
+      const H = stage.clientHeight;
+      S = Math.min(H * 0.95, W * (W < 700 ? 0.42 : 0.33), 430);
+      stage.style.setProperty("--S", `${S}px`);
+      kTo = W * (W < 700 ? 0.19 : 0.2);
+      lTo = W * (W < 700 ? 0.81 : 0.8);
+      kFrom = -S * 0.16;
+      lFrom = W + S * 0.16;
+    };
+    measure();
+    const place = (el: HTMLElement, x: number) => { el.style.transform = `translateX(${x - S / 2}px)`; };
+
+    if (still) {
+      place(kEl, kTo); place(lEl, lTo);
+      K.frame(K.seg("idle")[0]); L.frame(L.seg("breathe")[0]);
+      stage.classList.add("no-motion");
+      addEventListener("resize", () => { measure(); place(kEl, kTo); place(lEl, lTo); });
+      return;
+    }
+
+    /** a walk: in, whole loops, out; frame and x from the same moment */
+    const walk = (M: Mascot, g: ReturnType<typeof gaitOf>, segs: [string, string, string], from: number, to: number) => {
+      const [i, l, o] = segs.map((s) => M.seg(s)) as [number, number][];
+      const dir = Math.sign(to - from);
+      const { loops, per } = planWalk(g, Math.abs(to - from), S);
+      const inN = i[1] - i[0], loopN = l[1] - l[0], outN = o[1] - o[0];
+      const frames = inN + loops * loopN + outN;
+      return {
+        ms: (frames / FPS) * 1000,
+        at(t: number) {
+          const f = (t / 1000) * FPS;
+          if (f < inN) return { f: i[0] + f, x: from };
+          const q = f - inN;
+          if (q < loops * loopN) {
+            const n = Math.floor(q / loopN), u = (q - n * loopN) / loopN;
+            return { f: l[0] + u * loopN, x: from + dir * (n + advanceAt(g, u)) * per };
+          }
+          return { f: Math.min(o[1] - 0.5, o[0] + (q - loops * loopN)), x: from + dir * loops * per };
+        },
+      };
+    };
+    const clip = (M: Mascot, name: string, t: number, loop = false) => {
+      const [a, b] = M.seg(name);
+      const n = b - a, f = (t / 1000) * FPS;
+      return a + (loop ? f % n : Math.min(n - 0.5, f));
+    };
+    const clipMs = (M: Mascot, name: string) => { const [a, b] = M.seg(name); return ((b - a) / FPS) * 1000; };
+
+    /* the script, in ms from the start */
+    const K_WALK = 1500, L_WALK = 2300;
+    let kWalk = walk(K, gaitOf("kuki", "stroll"), ["stroll_in_r", "stroll_r", "stroll_out_r"], kFrom, kTo);
+    let lWalk = walk(L, gaitOf("lili", "hop"), ["walk_in_l", "walk_l", "walk_out_l"], lFrom, lTo);
+    const kDone = K_WALK + kWalk.ms, lDone = L_WALK + lWalk.ms;
+    const NAME = lDone - 250;
+    const CHEER = Math.max(kDone, lDone) + 650;
+    let introOver = false;
+
+    addEventListener("resize", () => {
+      measure();
+      if (introOver) { place(kEl, kTo); place(lEl, lTo); }
+      else {
+        kWalk = walk(K, gaitOf("kuki", "stroll"), ["stroll_in_r", "stroll_r", "stroll_out_r"], kFrom, kTo);
+        lWalk = walk(L, gaitOf("lili", "hop"), ["walk_in_l", "walk_l", "walk_out_l"], lFrom, lTo);
+      }
+    });
+
+    /* after the meeting: they stand about, now and then one of them does something */
+    type Act = { M: Mascot; name: string; t0: number };
+    let kAct: Act | null = null, lAct: Act | null = null;
+    let nextIdle = 0, turn = 0;
+
+    let t = 0, last = performance.now(), on = true, nameGone = false, hopped = false;
+    const io = new IntersectionObserver(([e]) => { on = !!e?.isIntersecting; if (on) { last = performance.now(); requestAnimationFrame(tick); } });
+    io.observe(stage);
+
+    function tick(now: number) {
+      if (!on) return;
+      t += Math.min(64, now - last); last = now;
+
+      /* Kuki: peeks from the left edge, leans in, walks */
+      if (t < K_WALK) {
+        place(kEl, kFrom);
+        K.frame(clip(K, "idle", t, true));
+        kLean.style.transform = t > 250 && t < K_WALK - 250 ? "rotate(9deg)" : "none";
+      } else if (t < kDone) {
+        const p = kWalk.at(t - K_WALK); place(kEl, p.x); K.frame(p.f);
+      }
+      /* Lili: peeks from the right edge, wiggles her ears, hops in */
+      if (t < L_WALK) {
+        place(lEl, lFrom);
+        L.frame(t > 500 ? clip(L, "ear_wiggle", t - 500) : clip(L, "breathe", t, true));
+        lLean.style.transform = t > 350 && t < L_WALK - 250 ? "rotate(-9deg)" : "none";
+      } else if (t < lDone) {
+        const p = lWalk.at(t - L_WALK); place(lEl, p.x); L.frame(p.f);
+      }
+      /* both in: the name meets in the middle */
+      if (!nameGone && t >= NAME) { nameGone = true; name.classList.add("go"); }
+      if (t >= kDone && t < CHEER) K.frame(clip(K, "idle", t - kDone, true));
+      if (t >= lDone && t < CHEER) L.frame(clip(L, "breathe", t - lDone, true));
+      if (t >= CHEER) {
+        if (!introOver) {
+          introOver = true;
+          kAct = { M: K, name: "celebrate", t0: t };
+          lAct = { M: L, name: "tickle", t0: t };
+          nextIdle = t + 7000;
+        }
+        if (!hopped && t >= CHEER + 250) { hopped = true; name.classList.remove("go"); name.classList.add("hop"); }
+        const k = kAct && t - kAct.t0 < clipMs(K, kAct.name) ? clip(K, kAct.name, t - kAct.t0) : clip(K, "idle", t, true);
+        const l = lAct && t - lAct.t0 < clipMs(L, lAct.name) ? clip(L, lAct.name, t - lAct.t0) : clip(L, "breathe", t, true);
+        K.frame(k); L.frame(l);
+        if (t >= nextIdle) {
+          if (turn++ % 2 === 0) kAct = { M: K, name: Math.random() < 0.6 ? "act_wave" : "paw_rub", t0: t };
+          else lAct = { M: L, name: Math.random() < 0.7 ? "ear_wiggle" : "yawn", t0: t };
+          nextIdle = t + 5200 + Math.random() * 3500;
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  /* ── the journey: scroll moves the worlds; Lili and Kuki walk at their own pace ──
+     Scrolling only says WALK or STOP and which way; the steps keep their own
+     clock at one calm speed, however fast the page is flicked (user,
+     2026-11-16: "ne kadar hızlı kaydırsa bile sabit olsun"). The road's tufts
+     move with their feet, so a foot that is down goes back with the ground.
+     When the scrolling stops they finish the step they are in, stop, face the
+     child and look about. */
+  async function journey() {
+    const sec = document.getElementById("journey")!;
+    const sticky = sec.querySelector<HTMLElement>(".j-sticky")!;
+    const track = sec.querySelector<HTMLElement>(".j-track")!;
+    const worlds = [...track.querySelectorAll<HTMLElement>(".world")];
+    const dots = [...sec.querySelectorAll<HTMLElement>(".j-dots i")];
+    if (still) return;
+    const kEl = sec.querySelector<HTMLElement>(".j-walkers .kuki")!;
+    const lEl = sec.querySelector<HTMLElement>(".j-walkers .lili")!;
+    const tufts = sec.querySelector<HTMLElement>(".j-tufts");
+
+    let dist = 0, S = 0, viewW = 0;
+    const measure = () => {
+      viewW = sticky.clientWidth;
+      const H = sticky.clientHeight;
+      dist = Math.max(0, track.scrollWidth - viewW);
+      sec.style.height = `${H + dist}px`;
+      S = Math.max(110, Math.min(H * 0.26, 230));
+      sec.style.setProperty("--S", `${S}px`);
+    };
+    measure();
+
+    /* the worlds follow the scroll exactly */
+    let lastY = scrollY, want = 1, movedAt = -1e9;
+    const place = () => {
+      const r = sec.getBoundingClientRect();
+      const top = parseFloat(getComputedStyle(sticky).top) || 0;
+      const p = dist ? Math.max(0, Math.min(1, (top - r.top) / dist)) : 0;
+      const shift = p * dist;
+      track.style.transform = `translateX(${-shift}px)`;
+      let best = 0, bd = Infinity;
+      worlds.forEach((w, i) => {
+        const d = Math.abs(w.offsetLeft + w.offsetWidth / 2 - shift - viewW / 2);
+        if (d < bd) { bd = d; best = i; }
+      });
+      dots.forEach((d, i) => d.classList.toggle("on", i === best));
+      /* only scrolling INSIDE the walk moves them; at either end they stand */
+      const dy = scrollY - lastY;
+      lastY = scrollY;
+      if (dy !== 0 && p > 0 && p < 1) { want = Math.sign(dy); movedAt = performance.now(); }
+    };
+    let queued = false;
+    addEventListener("scroll", () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; place(); }); } }, { passive: true });
+    addEventListener("resize", () => { measure(); place(); });
+    place();
+
+    let K: Mascot | null = null, L: Mascot | null = null;
+    const gL = gaitOf("lili", "hop"), gK = gaitOf("kuki", "hop");
+    /* one stride for both: Kuki's steps stretch to Lili's hop (the app lets a
+       stride stretch by up to √2), so they finish a step at the same moment */
+    const SPEED = 0.82;                 /* of Lili's own pace: calm, never a run */
+    type Mode = "rest" | "in" | "walk" | "out";
+    let mode: Mode = "rest", dir = 1, modeT = 0, walked = 0, stopAt = -1, ground = 0, restT = 0;
+    let look: { M: Mascot; name: string; t0: number } | null = null, nextLook = 4000;
+
+    const seg = (M: Mascot, base: string) => M.seg(`${base}_${dir > 0 ? "r" : "l"}`);
+    const per = () => (gL.stride * S) / 512;
+    const loopMs = () => ((32 / FPS) * 1000) / SPEED;
+
+    function draw(dt: number, now: number) {
+      if (!K || !L) return;
+      const moving = now - movedAt < 260;
+      modeT += dt;
+      const kBase = viewW * (viewW < 700 ? 0.2 : 0.14), lBase = viewW * (viewW < 700 ? 0.55 : 0.28);
+      let kx = kBase, lx = lBase;
+
+      if (mode === "rest") {
+        restT += dt;
+        if (moving) { mode = "in"; dir = want; modeT = 0; look = null; }
+        else {
+          const lf = look && look.M === L && restT - look.t0 < 3000 ? look : null;
+          const kf = look && look.M === K && restT - look.t0 < 3000 ? look : null;
+          const play = (M: Mascot, name: string, t: number, loop: boolean) => {
+            const [a, b] = M.seg(name), n = b - a, f = (t / 1000) * FPS;
+            M.frame(a + (loop ? f % n : Math.min(n - 0.5, f)));
+          };
+          lf ? play(L, lf.name, restT - lf.t0, false) : play(L, "breathe", restT, true);
+          kf ? play(K, kf.name, restT - kf.t0, false) : play(K, "idle", restT, true);
+          if (restT > nextLook) {
+            look = Math.random() < 0.5 ? { M: L, name: "ear_wiggle", t0: restT } : { M: K, name: Math.random() < 0.5 ? "sniff" : "paw_rub", t0: restT };
+            nextLook = restT + 4500 + Math.random() * 3000;
+          }
+        }
+      }
+      if (mode === "in") {
+        /* they turn to the way they go and set off, where they stand */
+        const f = (modeT / 1000) * FPS * SPEED;
+        const li = seg(L, "walk_in"), ki = seg(K, "walk_in");
+        L.frame(Math.min(li[1] - 0.5, li[0] + f)); K.frame(Math.min(ki[1] - 0.5, ki[0] + f));
+        if (f >= Math.max(li[1] - li[0], ki[1] - ki[0])) { mode = "walk"; modeT = 0; walked = 0; stopAt = -1; }
+      }
+      if (mode === "walk") {
+        const P = per();
+        const step = (P / loopMs()) * dt;
+        /* asked to stop, or to turn round: finish this step, then stop */
+        if (stopAt < 0 && (!moving || want !== dir)) stopAt = Math.ceil((walked + 1e-6) / P) * P;
+        /* the scrolling came back before the step ended: walk on, no stop */
+        else if (stopAt >= 0 && moving && want === dir && walked < stopAt) stopAt = -1;
+        walked = Math.min(stopAt >= 0 ? stopAt : Infinity, walked + step);
+        ground -= dir * step;
+        const u = (walked / P) % 1 || (walked > 0 && stopAt >= 0 && walked >= stopAt ? 1 : 0);
+        const lw = seg(L, "walk"), kw = seg(K, "walk");
+        L.frame(lw[0] + u * (lw[1] - lw[0]) - (u === 1 ? 0.5 : 0));
+        K.frame(kw[0] + u * (kw[1] - kw[0]) - (u === 1 ? 0.5 : 0));
+        lx = lBase + dir * P * (advanceAt(gL, u) - u);
+        kx = kBase + dir * P * (advanceAt(gK, u) - u);
+        if (stopAt >= 0 && walked >= stopAt) { mode = "out"; modeT = 0; }
+      }
+      if (mode === "out") {
+        /* they come down, sit back and look at the child */
+        const f = (modeT / 1000) * FPS * SPEED;
+        const lo = seg(L, "walk_out"), ko = seg(K, "walk_out");
+        L.frame(Math.min(lo[1] - 0.5, lo[0] + f)); K.frame(Math.min(ko[1] - 0.5, ko[0] + f));
+        if (f >= Math.max(lo[1] - lo[0], ko[1] - ko[0])) { mode = "rest"; modeT = 0; restT = 0; nextLook = 2500; }
+      }
+      lEl.style.transform = `translateX(${lx - S / 2}px)`;
+      kEl.style.transform = `translateX(${kx - S / 2}px)`;
+      if (tufts) tufts.style.backgroundPosition = `${ground}px 0`;
+    }
+
+    let on = false, last = 0;
+    const tick = (now: number) => {
+      if (!on) return;
+      draw(Math.min(64, now - last), now);
+      last = now;
+      requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver(async ([e]) => {
+      on = !!e?.isIntersecting;
+      if (on && !K) {
+        [K, L] = await Promise.all([mascot(kEl.querySelector(".lot")!, "kuki"), mascot(lEl.querySelector(".lot")!, "lili")]);
+      }
+      if (on) { last = performance.now(); requestAnimationFrame(tick); }
+    }, { rootMargin: "300px 0px" });
+    io.observe(sec);
+  }
+
+  /* ── the download section: Kuki dances while it is on screen ──────────── */
+  function dancer() {
+    const el = document.getElementById("dancer")!;
+    let M: Mascot | null = null, on = false, t = 0, last = 0;
+    const tick = (now: number) => {
+      if (!on || !M) return;
+      t += Math.min(64, now - last); last = now;
+      const [a, b] = M.seg("act_dance");
+      M.frame(a + ((t / 1000) * FPS) % (b - a));
+      requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver(async ([e]) => {
+      on = !!e?.isIntersecting;
+      if (on && !M) M = await mascot(el, "kuki");
+      if (!M) return;
+      if (still) { M.frame(M.seg("idle")[0]); return; }
+      if (on) { last = performance.now(); requestAnimationFrame(tick); }
+    }, { rootMargin: "200px 0px" });
+    io.observe(el);
+  }
+
+  /* ── the silent glimpse plays only on screen, never with reduced motion ─ */
+  function glimpse() {
+    const v = document.querySelector<HTMLVideoElement>("video[data-autoplay]");
+    if (!v || still) return;
+    new IntersectionObserver(([e]) => {
+      if (e?.isIntersecting) { v.preload = "auto"; v.play().catch(() => {}); } else v.pause();
+    }, { threshold: 0.3 }).observe(v);
+  }
+
+  hero();
+  journey();
+  dancer();
+  glimpse();
+</script>

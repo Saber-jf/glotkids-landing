@@ -1,0 +1,8 @@
+---
+/* A fact the owner has not given yet (src/site.ts). Visible in a draft;
+   scripts/check.mjs refuses a production build while one is on a page. */
+import { UI, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+<span class="todo">[{UI[lang].toBeFilled}: <slot />]</span>

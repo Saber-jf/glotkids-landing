@@ -1,0 +1,133 @@
+---
+/* Gizlilik Politikası, Türkçe. İngilizcesiyle (/privacy) aynı içerik; biri
+   değişince öteki de değişir. Kanıt ve plan: docs/GIZLILIK-INCELEMESI.md. */
+import Legal from "../../layouts/Legal.astro";
+import Ctl from "../../components/Ctl.astro";
+import Todo from "../../components/Todo.astro";
+import Providers from "../../components/Providers.astro";
+import Kept from "../../components/Kept.astro";
+import { DECISIONS } from "../../site";
+import { href, country } from "../../i18n";
+const lang = "tr" as const;
+const toc: [string, string][] = [
+  ["summary", "Kısaca"], ["who", "Biz kimiz?"], ["device", "Cihazda"], ["connect", "Uygulama internete bağlanınca"],
+  ["account", "Ebeveyn hesabı"], ["not", "Toplamadıklarımız"], ["use", "Verileri ne için kullanırız?"], ["share", "Kimlerle paylaşırız?"],
+  ["keep", "Ne kadar saklarız?"], ["security", "Güvenlik"], ["children", "Çocuklar"], ["rights", "Seçenekleriniz ve haklarınız"],
+  ["site", "Bu web sitesi"], ["changes", "Değişiklikler"], ["contact", "İletişim"],
+];
+---
+<Legal lang={lang} page="privacy" title="Gizlilik Politikası" eyebrow="Gizlilik"
+  description="GlotKids uygulamasının ve web sitesinin neyi, ne zaman, nereye ve neden gönderdiği; neyi hiç istemediği ve haklarınızı nasıl kullanacağınız."
+  intro="GlotKids 4–8 yaş çocuklar için bir uygulama ve olabildiğince az veriyle çalışacak biçimde yapıldı. Bu metin hesapsız kullanımda ne olduğunu ve bir ebeveyn hesap açınca neyin değiştiğini anlatır."
+  toc={toc}>
+
+  <div class="summary" id="summary">
+    <h2>Kısaca</h2>
+    <ul>
+      <li><b>Reklam ve analitik yok.</b> Uygulamada reklam, reklam kimliği, üçüncü taraf analitik ya da çökme raporlama aracı yoktur; kimse izlenmez.</li>
+      <li><b>Hesap yoksa çocuğun ilerlemesi cihazda kalır.</b> Bize gelmez.</li>
+      <li><b>Uygulama internet kullanır:</b> yeni dünyaları ve güncellemeleri indirir. Bu sırada IP adresi gibi teknik bilgiler gider ("Uygulama internete bağlanınca").</li>
+      <li><b>Ebeveyn hesabı isteğe bağlıdır.</b> Açarsanız çocuğun ilerlemesinin bir kopyası hesabınıza bağlı saklanır; başka bir cihazda devam edebilirsiniz.</li>
+      <li><b>Çocuktan hiçbir kişisel bilgi istemeyiz</b> — ad, doğum tarihi, fotoğraf, ses, konum — ve uygulama mikrofon, kamera ya da konum izni istemez.</li>
+      <li><b>Verileri satmayız, reklam için paylaşmayız.</b></li>
+    </ul>
+  </div>
+
+  <h2 id="who">Biz kimiz?</h2>
+  <p>Veri sorumlusu: <Ctl k="legalName" lang={lang} />, <Ctl k="address" lang={lang} />. Gizlilik iletişimi: <Ctl k="privacyEmail" lang={lang} link />.</p>
+  <p>Uygulamanın sunulduğu ülkeler: {DECISIONS.markets ? DECISIONS.markets.map((c) => country(c, lang)).join(", ") : <Todo lang={lang}>ülkeler</Todo>}. KVKK kapsamındaki bilgilendirme: <a href={href("kvkk", lang)}>KVKK Aydınlatma Metni</a>.</p>
+
+  <h2 id="device">1. Cihazda (hesap gerekmez)</h2>
+  <p>Çocuğun kaldığı yerden devam edebilmesi için uygulama cihazdaki kendi alanında küçük bir ilerleme dosyası tutar:</p>
+  <ul>
+    <li>uygulamanın ürettiği rastgele bir profil kimliği ve "1", "2" gibi bir etiket;</li>
+    <li>tanışılan kelimeler, kaç kez ve ne zaman;</li>
+    <li>bitirilen oyunlar ve dünyalar, haritadaki yer;</li>
+    <li>indirilen içerik (resimler, sesler, oyun verileri).</li>
+  </ul>
+  <p>Hesap yoksa bu dosya <b>bize gönderilmez</b>. Profil kimliği bir ad değildir; yine de çocuğun uygulamayı kullanmasına ilişkin bir bilgidir ve ona göre ele alınır. Cihazın kendi yedekleri (iCloud, Google) açıksa dosya o yedeklere girebilir; o yedekleri Apple ya da Google tutar, biz göremeyiz.</p>
+  <p>Her soru sesle sorulduğu için uygulama cihazın ses seviyesini okur; ses çok kısıksa oyun bekler. Ses seviyesi yalnızca cihazda kullanılır; kaydedilmez, gönderilmez.</p>
+
+  <h2 id="connect">2. Uygulama internete bağlanınca</h2>
+  <p>İlk dünyalar uygulamayla gelir; sonraki dünyalar çocuk ilerledikçe indirilir. Cihaz çevrimiçiyken uygulama:</p>
+  <ul>
+    <li><b>sunucumuzdan</b> yeni içeriği sorar ve indirir. Sunucumuz IP adresini, zamanı ve isteğin kendisini (uygulama sürümü dahil) alır ve güvenlik için kayıtlarında tutar;</li>
+    <li><b>uygulama güncelleme hizmetimize</b> güncelleme olup olmadığını sorar. Bu hizmet IP adresini, bu kurulum için üretilmiş rastgele bir kimliği (uygulama yeniden kurulunca değişir), işletim sistemini ve uygulama sürümünü alır.</li>
+  </ul>
+  <p>Hesap yoksa bu bilgileri bir ada ya da e-postaya bağlamayız ve profil çıkarmak için kullanmayız.</p>
+
+  <h2 id="account">3. Ebeveyn hesabıyla</h2>
+  <p>Hesap isteğe bağlıdır ve ebeveyne aittir; çocuk adına hesap açılmaz. Ebeveyn kapısının arkasında, e-posta koduyla, Google ya da Apple ile açılır. Hesap açılmadan önce uygulama neyin yedekleneceğini söyler.</p>
+  <ul>
+    <li><b>Hesap bilgileri:</b> e-posta adresi, hesap kimliği, giriş yöntemi, hesabın açıldığı ve son kullanıldığı zaman. Apple'da "E-postamı gizle"yi seçebilirsiniz; o zaman bize Apple'ın yönlendirme adresi gelir.</li>
+    <li><b>İlerleme yedeği:</b> yukarıdaki ilerleme dosyasının hesabınıza bağlı bir kopyası; sürümü, son güncellenme zamanı ve en son yazan cihazın işletim sistemi (iOS ya da Android).</li>
+  </ul>
+  <p>Giriş yapınca ve ilerleme kaydedildikten kısa süre sonra cihaz ile hesabınız birleştirilir; hesaba bağlı her cihazda aynı ilerleme olur. Yedek çocuğun adını ya da doğum tarihini içermez; ama hesabınıza bağlı olduğu için onu çocuğunuza ilişkin bir bilgi olarak ele alırız.</p>
+  <p>Yetkili çalışanlarımız destek vermek ve talepleri karşılamak için bir hesabın e-posta adresini ve yedeğin özetini (ör. kaç kelimeyle tanışıldığı) görebilir. Yaptıkları her hesap işlemi kayda geçer.</p>
+
+  <h2 id="not">Toplamadıklarımız</h2>
+  <ul>
+    <li>Çocuğun adı, soyadı, doğum tarihi, okulu, fotoğrafı, videosu ya da ses kaydı.</li>
+    <li>Mikrofon, kamera, fotoğraf arşivi, rehber, takvim ya da konum erişimi.</li>
+    <li>Reklam kimliği, üçüncü taraf analitik, çökme raporlama ya da izleme.</li>
+    <li>Sohbet, mesajlaşma, paylaşım ya da başka kullanıcılarla iletişim. Bildirim (push) yok.</li>
+  </ul>
+
+  <h2 id="use">Verileri ne için kullanırız?</h2>
+  <ul>
+    <li>Uygulamayı çalıştırmak, içeriği ve güncellemeleri ulaştırmak (IP adresi, istek bilgileri, kurulum kimliği).</li>
+    <li>Hizmetin güvenliği ve hataların giderilmesi (sunucu kayıtları).</li>
+    <li>İsteğe bağlı ebeveyn hesabı ve yedeği (hesap bilgileri, ilerleme yedeği).</li>
+    <li>Taleplerinizi ve destek mesajlarınızı cevaplamak; silmelerin yapıldığını gösterebilmek.</li>
+  </ul>
+  <p>Verileri asla reklam, profilleme ya da satış için kullanmayız. KVKK m.5 kapsamındaki hukuki sebepler <a href={href("kvkk", lang)}>KVKK Aydınlatma Metni</a>'ndedir.{!DECISIONS.legalBasesReviewed && <> <Todo lang={lang}>hukuki sebepler hukukçu tarafından kesinleştirilecek</Todo></>}</p>
+
+  <h2 id="share">Kimlerle paylaşırız?</h2>
+  <p>Yalnızca aşağıdaki hizmet sağlayıcılarla, her birinin hizmeti için gerektiği kadar; kanun gerektirdiğinde yetkili kurumlarla.</p>
+  <Providers lang={lang} />
+  <p><b>Türkiye dışına aktarım:</b> bu sağlayıcıların bir kısmı Türkiye dışındadır. {DECISIONS.transfers ? DECISIONS.transfers[lang] : <Todo lang={lang}>her sağlayıcı için uygulanan aktarım mekanizması (KVKK m.9)</Todo>}</p>
+
+  <h2 id="keep">Ne kadar saklarız?</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Veri</th><th>Süre</th></tr></thead>
+    <tbody>
+      <tr><td>Cihazdaki ilerleme</td><td>Uygulama silinene ya da ilerleme sıfırlanana ("Başa dön") kadar</td></tr>
+      <tr><td>Ebeveyn hesabı ve ilerleme yedeği</td><td>Siz silene kadar. Uzun süre kullanılmayan hesaplar: <Kept k="inactiveAccount" lang={lang} /></td></tr>
+      <tr><td>Bir hesabın silindiğine dair kayıt (e-posta adresi içermez)</td><td><Kept k="deletionRecord" lang={lang} /></td></tr>
+      <tr><td>Sunucu kayıtları (IP adresi, istek)</td><td><Kept k="serverLogs" lang={lang} /></td></tr>
+      <tr><td>Giriş hizmetinin kendi kayıtları</td><td><Kept k="authProvider" lang={lang} /></td></tr>
+      <tr><td>Altyapı yedeklerimiz</td><td><Kept k="infraBackups" lang={lang} />; canlı sistemden silinen veri, bir yedek geri yüklense de geri getirilmez</td></tr>
+      <tr><td>Destek yazışmaları</td><td><Kept k="supportMail" lang={lang} /></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="security">Güvenlik</h2>
+  <ul>
+    <li>Uygulama ile hizmetlerimiz arasındaki bütün iletişim şifrelidir (HTTPS).</li>
+    <li>İndirilen her dosya kullanılmadan önce boyutu ve özetiyle denetlenir.</li>
+    <li>Giriş oturumu cihazın güvenli deposunda tutulur.</li>
+    <li>Yönetim paneline yalnızca listedeki yöneticiler girer; hesap işlemleri kayda geçer.</li>
+    <li>Altyapı yedeklerimiz şifrelidir.</li>
+  </ul>
+  <p>Bir güvenlik sorunu bulduğunuzu düşünüyorsanız lütfen <Ctl k="privacyEmail" lang={lang} link /> adresine yazın.</p>
+
+  <h2 id="children">Çocuklar</h2>
+  <p>GlotKids çocuklar için yapıldı ve çocuktan kişisel bilgi istemez. Yetişkine ait her şey — hesap, indirmeler, ilerlemeyi sıfırlama — ebeveyn kapısının arkasındadır. Ebeveyn kapısı yasal ebeveyn onayı değildir; bu yüzden hesabı yalnızca ebeveyn ya da yasal temsilci açabilir. Bir çocuğun bize kişisel bilgi gönderdiğini öğrenirsek sileriz.</p>
+
+  <h2 id="rights">Seçenekleriniz ve haklarınız</h2>
+  <ul>
+    <li><b>Hesabı silmek:</b> uygulamada "Ebeveyn"e dokunun, yetişkin sorusunu cevaplayın, sonra "Hesabı sil". Hesap ve ilerleme yedeği silinir. Uygulama olmadan: <a href={href("deletion", lang)}>Hesabı ve verileri silme</a>.</li>
+    <li><b>Yalnızca yedeği silmek</b> ya da <b>yedeklemeyi durdurmak:</b> aynı hesap ekranından; ya da bütün cihazlarda hesaptan çıkarak.</li>
+    <li><b>İlerlemeyi sıfırlamak:</b> haritadaki "Başa dön" (yetişkin onayıyla) bu cihazı ve hesap varsa yedeği de sıfırlar.</li>
+    <li><b>Diğer talepler</b> (bilgi, düzeltme, itiraz): <Ctl k="privacyEmail" lang={lang} link />. 30 gün içinde ücretsiz cevaplarız. KVKK m.11 kapsamındaki resmî başvuru: <a href={href("request", lang)}>Veri sahibi başvurusu</a>. Kişisel Verileri Koruma Kurulu'na şikâyet hakkınız saklıdır.</li>
+  </ul>
+
+  <h2 id="site">Bu web sitesi</h2>
+  <p>Bu site uygulamadan ayrıdır. Sitenin kendi kodu çerez yerleştirmez, tarayıcınıza bir şey kaydetmez, analitik ya da reklam içermez; yazı tipleri, resimler ve video bu siteden gelir. Barındırma sağlayıcısı siteyi ulaştırmak için erişim kayıtları (IP adresi, tarayıcı türü gibi) tutar: {DECISIONS.webHosting ? DECISIONS.webHosting[lang] : <Todo lang={lang}>sağlayıcı, kayıt süresi ve sağlayıcının kendi çerezi olup olmadığı</Todo>}.</p>
+
+  <h2 id="changes">Değişiklikler</h2>
+  <p>Bu metni uygulama değiştikçe güncelleriz; tarih ve sürüm sayfanın başındadır. Topladığımız veriler, amaçlar ya da paylaştıklarımız önemli ölçüde değişirse, değişiklikten önce uygulamada ve hesap sahiplerine e-postayla bildiririz. Kanun onay gerektiriyorsa, onayı değişiklik uygulanmadan önce isteriz.</p>
+
+  <h2 id="contact">İletişim</h2>
+  <p>Gizlilik: <Ctl k="privacyEmail" lang={lang} link /> · Destek: <Ctl k="supportEmail" lang={lang} link /> · Posta: <Ctl k="address" lang={lang} /></p>
+</Legal>

@@ -1,0 +1,14 @@
+---
+/* One of the controller's facts (src/site.ts → CONTROLLER), or its blank. */
+import { CONTROLLER } from "../site";
+import type { Lang } from "../i18n";
+import Todo from "./Todo.astro";
+interface Props { k: keyof typeof CONTROLLER; lang: Lang; link?: boolean }
+const NAMES: Record<Lang, Record<keyof typeof CONTROLLER, string>> = {
+  en: { legalName: "registered name of the controller", kind: "legal form", address: "postal address", mersis: "MERSİS number (if a company)", kep: "KEP address", privacyEmail: "privacy email address", supportEmail: "support email address" },
+  tr: { legalName: "veri sorumlusunun kayıtlı adı / unvanı", kind: "hukuki yapı", address: "açık adres", mersis: "MERSİS numarası (şirketse)", kep: "KEP adresi", privacyEmail: "gizlilik e-posta adresi", supportEmail: "destek e-posta adresi" },
+};
+const { k, lang, link = false } = Astro.props;
+const v = CONTROLLER[k];
+---
+{v ? (link && v.includes("@") ? <a href={`mailto:${v}`}>{v}</a> : v) : <Todo lang={lang}>{NAMES[lang][k]}</Todo>}

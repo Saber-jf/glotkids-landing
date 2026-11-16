@@ -1,0 +1,73 @@
+---
+/* The parents' guide, in either language: how the app teaches, the gate, the
+   account, screen time, sound, downloads -- only what the app does. */
+import Legal from "../layouts/Legal.astro";
+import { href, type Lang } from "../i18n";
+import { WORD_COUNT, GAME_COUNT } from "../content";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const en = lang === "en";
+const toc: [string, string][] = en
+  ? [["method", "How it teaches"], ["worlds", "How a world works"], ["help", "Help, step by step"], ["gate", "The parental gate"], ["account", "Do I need an account?"], ["internet", "Internet and downloads"], ["time", "Screen time and pausing"], ["sound", "Sound"], ["safety", "Our commitments"]]
+  : [["method", "Nasıl öğretir?"], ["worlds", "Bir dünya nasıl ilerler?"], ["help", "Adım adım yardım"], ["gate", "Ebeveyn kapısı"], ["account", "Hesap gerekli mi?"], ["internet", "İnternet ve indirmeler"], ["time", "Ekran süresi ve durdurma"], ["sound", "Ses"], ["safety", "Taahhütlerimiz"]];
+---
+<Legal lang={lang} page="parents" toc={toc} dated={false}
+  title={en ? "For parents" : "Ebeveynler için"} eyebrow={en ? "Parents' guide" : "Ebeveyn rehberi"}
+  description={en ? "How GlotKids teaches, what your child sees and hears, the parental gate, the optional account, screen time and safety." : "GlotKids nasıl öğretir, çocuğunuz ne görür ve duyar; ebeveyn kapısı, isteğe bağlı hesap, ekran süresi ve güvenlik."}
+  intro={en ? `What to know before handing GlotKids to your child. For ages 4–8; the first six worlds have ${GAME_COUNT} games and ${WORD_COUNT} words.` : `GlotKids'i çocuğunuza vermeden önce bilmeniz gerekenler. 4–8 yaş için; ilk altı dünyada ${GAME_COUNT} oyun ve ${WORD_COUNT} kelime var.`}>
+
+  <h2 id="method">{en ? "How it teaches" : "Nasıl öğretir?"}</h2>
+  <ul>
+    {en ? <>
+      <li><b>Instructions in Turkish, words in English.</b> The child understands what to do in their own language; what they learn is the English word.</li>
+      <li><b>The word is heard on its own.</b> It is never read inside a Turkish sentence; it always comes as its own clear recording.</li>
+      <li><b>Three beats:</b> Teacher Elif says it, Kuki repeats it, the child does it.</li>
+      <li><b>The child really chooses.</b> Every question has more than one choice, and their places change.</li>
+      <li><b>No points, lives or tests.</b> A wrong tap is named and the question is asked again.</li>
+    </> : <>
+      <li><b>Yönergeler Türkçe, kelime İngilizce.</b> Çocuk ne yapacağını kendi dilinde anlar; öğrendiği şey İngilizce kelimedir.</li>
+      <li><b>Kelime tek başına duyulur.</b> Türkçe bir cümlenin içinde okunmaz; her zaman kendi temiz kaydıyla gelir.</li>
+      <li><b>Üç vuruş:</b> Elif Öğretmen söyler, Kuki tekrarlar, çocuk yapar.</li>
+      <li><b>Çocuk gerçekten seçer.</b> Her soruda birden çok seçenek vardır ve yerleri değişir.</li>
+      <li><b>Puan, can ya da sınav yok.</b> Yanlış seçilen şeyin adı söylenir ve soru yinelenir.</li>
+    </>}
+  </ul>
+
+  <h2 id="worlds">{en ? "How a world works" : "Bir dünya nasıl ilerler?"}</h2>
+  <p>{en ? "Each world has 5–7 words and three games that use the same words: the first introduces them with cards, the second practises them somewhere else without cards, and the third lets the child use them with less help. Short scenes with Lili and Kuki link the games." : "Her dünyada 5–7 kelime ve aynı kelimeleri kullanan üç oyun vardır: birincisi kelimeleri kartla tanıtır, ikincisi kartsız başka bir yerde pekiştirir, üçüncüsünde çocuk onları daha az yardımla kullanır. Oyunları Lili ile Kuki'nin kısa sahneleri bağlar."}</p>
+
+  <h2 id="help">{en ? "Help, step by step" : "Adım adım yardım"}</h2>
+  <p>{en ? "If a word isn't found, it is said again after a few seconds, then once more, then the right thing gently grows and shrinks. Help shows the way; it doesn't finish the turn for the child. Where a game needs it, a white glove first shows its rule once." : "Bulunamayan kelime birkaç saniye sonra yeniden söylenir, sonra bir daha, sonra doğru şey hafifçe büyüyüp küçülür. Yardım yolu gösterir, turu çocuğun yerine bitirmez. Gerektiğinde oyunun kuralını önce beyaz bir eldiven bir kez gösterir."}</p>
+
+  <h2 id="gate">{en ? "The parental gate" : "Ebeveyn kapısı"}</h2>
+  <p>{en ? "The account, downloads and resetting progress sit behind a grown-up's question: a multiplication written in Turkish words, with three answers in numbers. A child who can't read can't tell what is asked; a wrong answer brings a new question. The gate keeps children from adult areas; it is not legal parental consent." : "Hesap, indirmeler ve ilerlemeyi sıfırlama bir yetişkin sorusunun arkasındadır: yazıyla yazılmış bir çarpma ve rakamla üç cevap. Okumayı bilmeyen bir çocuk ne sorulduğunu anlayamaz; yanlış cevapta yeni bir soru gelir. Kapı çocuğu yetişkin bölümlerinden uzak tutar; yasal ebeveyn onayı değildir."}</p>
+
+  <h2 id="account">{en ? "Do I need an account?" : "Hesap gerekli mi?"}</h2>
+  <p>{en ? "No. Without an account, progress stays on the device. A parent account (email code, Google or Apple) keeps a copy of the progress with your account so you can continue on another device; no name or birth date is asked for your child. You can delete it in the app at any time." : "Hayır. Hesap yoksa ilerleme cihazda kalır. Ebeveyn hesabı (e-posta kodu, Google ya da Apple) ilerlemenin bir kopyasını hesabınıza bağlı tutar; başka bir cihazda devam edebilirsiniz. Çocuğunuz için ad ya da doğum tarihi istenmez. Hesabı uygulamada istediğiniz zaman silebilirsiniz."} <a href={href("privacy", lang)}>{en ? "Privacy Policy" : "Gizlilik Politikası"}</a></p>
+
+  <h2 id="internet">{en ? "Internet and downloads" : "İnternet ve indirmeler"}</h2>
+  <p>{en ? "The first worlds come with the app. Later worlds are downloaded as your child moves on, and updates arrive over the internet; downloaded content is kept on the device. The app is not designed to be used fully offline." : "İlk dünyalar uygulamayla gelir. Sonraki dünyalar çocuk ilerledikçe iner, güncellemeler internetle gelir; inen içerik cihazda saklanır. Uygulama tamamen internetsiz kullanılmak üzere tasarlanmadı."}</p>
+
+  <h2 id="time">{en ? "Screen time and pausing" : "Ekran süresi ve durdurma"}</h2>
+  <p>{en ? "Games are made of short rounds and a world doesn't have to be finished in one go; the map remembers where your child was. The Pause button at the top of each game holds everything where it is. For time limits, use your device's own tools (Screen Time on iOS, Family Link on Android)." : "Oyunlar kısa turlardan oluşur; bir dünya tek seferde bitirilmek zorunda değildir, harita kalınan yeri hatırlar. Her oyunun üstündeki Durdur düğmesi her şeyi olduğu yerde bekletir. Süre sınırı için cihazınızın kendi araçlarını kullanabilirsiniz (iOS'ta Ekran Süresi, Android'de Family Link)."}</p>
+
+  <h2 id="sound">{en ? "Sound" : "Ses"}</h2>
+  <p>{en ? "Every question is spoken, so the lesson plays even with the iPhone's silent switch on. If the volume is very low, the game waits and shows the child how to turn it up; a small button lets a grown-up continue without sound. Music plays softly under speech and drops further while someone is talking." : "Her soru sesle sorulduğu için ders iPhone'un sessiz anahtarı açıkken de duyulur. Ses çok kısıksa oyun bekler ve çocuğa sesi açmayı gösterir; küçük bir düğmeyle bir yetişkin sessiz devam edebilir. Müzik konuşmanın altında kısık çalar, biri konuşurken daha da kısılır."}</p>
+
+  <h2 id="safety">{en ? "Our commitments" : "Taahhütlerimiz"}</h2>
+  <ul>
+    {en ? <>
+      <li>No ads, advertising ID, third-party analytics or tracking.</li>
+      <li>No microphone, camera, location, contacts or photos.</li>
+      <li>No chat or contact with other users.</li>
+      <li>No personal information asked of children.</li>
+      <li>The account is the parent's and can be deleted in the app.</li>
+    </> : <>
+      <li>Reklam, reklam kimliği, üçüncü taraf analitik ya da izleme yok.</li>
+      <li>Mikrofon, kamera, konum, rehber ya da fotoğraf erişimi yok.</li>
+      <li>Sohbet ya da başka kullanıcılarla iletişim yok.</li>
+      <li>Çocuktan kişisel bilgi istenmez.</li>
+      <li>Hesap ebeveynindir ve uygulamada silinebilir.</li>
+    </>}
+  </ul>
+</Legal>

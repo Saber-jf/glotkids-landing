@@ -1,0 +1,29 @@
+---
+import Base from "../layouts/Base.astro";
+import "../styles/home.css";
+import { FAQ } from "../content";
+import { href, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const T = lang === "en"
+  ? { title: "Frequently asked questions", eyebrow: "FAQ", lead: "Can't find your answer?", contact: "Write to us", desc: "Questions parents ask about GlotKids: age, reading, ads, account, internet, permissions, sound and deletion." }
+  : { title: "Sık sorulan sorular", eyebrow: "SSS", lead: "Cevabını bulamadığınız bir soru mu var?", contact: "Bize yazın", desc: "GlotKids hakkında ebeveynlerin sık sorduğu sorular: yaş, okuma, reklam, hesap, internet, izinler, ses ve silme." };
+---
+<Base title={T.title} description={T.desc} lang={lang} page="faq">
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">{T.eyebrow}</span>
+      <h1>{T.title}</h1>
+      <p class="lead">{T.lead} <a href={href("contact", lang)}>{T.contact}</a>.</p>
+    </div>
+  </section>
+  <section class="sec tight">
+    <div class="wrap">
+      <div class="faq">{FAQ.map((f) => <details><summary>{f.q[lang]}</summary><p>{f.a[lang]}</p></details>)}</div>
+    </div>
+  </section>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org", "@type": "FAQPage", inLanguage: lang,
+    mainEntity: FAQ.map((f) => ({ "@type": "Question", name: f.q[lang], acceptedAnswer: { "@type": "Answer", text: f.a[lang] } })),
+  })} />
+</Base>

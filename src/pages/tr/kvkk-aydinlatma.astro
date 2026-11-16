@@ -1,0 +1,79 @@
+---
+import Legal from "../../layouts/Legal.astro";
+import Ctl from "../../components/Ctl.astro";
+import Todo from "../../components/Todo.astro";
+import { DECISIONS } from "../../site";
+
+const toc: [string, string][] = [
+  ["sorumlu", "Veri sorumlusu"],
+  ["veriler", "İşlenen veriler ve kişi grupları"],
+  ["amac", "Amaçlar ve hukuki sebepler"],
+  ["yontem", "Toplama yöntemi"],
+  ["aktarim", "Aktarım"],
+  ["haklar", "Haklarınız (KVKK m.11)"],
+  ["basvuru", "Başvuru"],
+];
+---
+<Legal lang="tr" page="kvkk" eyebrow="KVKK"
+  title="KVKK Aydınlatma Metni"
+  path="/kvkk-aydinlatma"
+  description="6698 sayılı Kişisel Verilerin Korunması Kanunu'nun 10. maddesi uyarınca GlotKids aydınlatma metni."
+  intro="6698 sayılı Kanun'un 10. maddesi ve Aydınlatma Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ uyarınca hazırlanmıştır."
+  toc={toc}
+>
+  <div class="note">Bu metin bir <b>bilgilendirmedir</b>; onay metni değildir ve sizden onay istemez. Bir işlem için açık rıza gerektiği sonucuna varılırsa, rıza bu metinden ayrı bir metinle, işlem başlamadan önce istenir. Daha sade anlatım ve ayrıntılar: <a href="/tr/gizlilik">Gizlilik Politikası</a>.</div>
+  {!DECISIONS.legalBasesReviewed && <p><Todo lang="tr">Hukuki sebepler hukukçu tarafından gözden geçirilecek; bu metin o zamana kadar taslaktır</Todo></p>}
+
+  <h2 id="sorumlu">1. Veri sorumlusu</h2>
+  <p><Ctl k="legalName" lang="tr" /> · Adres: <Ctl k="address" lang="tr" /> · MERSİS: <Ctl k="mersis" lang="tr" /> · KEP: <Ctl k="kep" lang="tr" /> · E-posta: <Ctl k="privacyEmail" lang="tr" link /></p>
+
+  <h2 id="veriler">2. İşlenen kişisel veriler ve ilgili kişi grupları</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Kişi grubu</th><th>Veri kategorisi</th><th>Veriler</th></tr></thead>
+    <tbody>
+      <tr><td>Uygulamayı kullanan herkes (hesap olmasa da)</td><td>İşlem güvenliği</td><td>IP adresi, istek zamanı ve istek satırı (uygulama sürümü, içerik kanalı); güncelleme hizmetine giden kuruluma özgü rastgele kimlik, işletim sistemi, uygulama sürümü</td></tr>
+      <tr><td>Çocuk (hesapsız kullanım)</td><td>—</td><td>Oyun ilerlemesi telefonda tutulur ve bize iletilmez; bu durumda tarafımızca işlenmez.</td></tr>
+      <tr><td>Ebeveyn hesabı sahibi</td><td>Kimlik, iletişim</td><td>E-posta adresi; Google / Apple ile girişte sağlayıcının verdiği hesap kimliği ve (Apple'da) gizlenmiş e-posta</td></tr>
+      <tr><td></td><td>Müşteri işlem</td><td>Hesap kimliği, giriş yöntemi, ilk ve son görülme zamanı; hesap ve yönetim işlemlerinin kaydı</td></tr>
+      <tr><td>Çocuk (ebeveyn hesabı açıldığında)</td><td>Çocuğa ilişkin kullanım kaydı</td><td>İlerleme belgesi: rastgele profil kimliği ve etiketi, tanışılan kelimeler ve zamanları, bitirilen oyun ve dünyalar, haritadaki yer; belgenin sürümü, son yazan cihazın işletim sistemi. Çocuğun adı ya da doğum tarihi bulunmaz; ebeveynin hesabına bağlı olduğu için ilişkilendirilebilir.</td></tr>
+      <tr><td>Bize yazan kişiler</td><td>İletişim, talep</td><td>Ad (yazdıysanız), e-posta ya da KEP adresi, talebin içeriği; resmî başvurularda Tebliğ'in istediği bilgiler</td></tr>
+    </tbody>
+  </table></div>
+  <p>Uygulama sağlık, biyometrik ya da diğer özel nitelikli kişisel veri işlemez; fotoğraf, ses kaydı ya da konum istemez.</p>
+
+  <h2 id="amac">3. İşleme amaçları ve hukuki sebepler</h2>
+  <ul>
+    <li>Uygulamanın ve içeriğinin çalıştırılması, güncellemelerin ve yeni dünyaların ulaştırılması — sözleşmenin ifası (m.5/2-c) ve meşru menfaat (m.5/2-f).</li>
+    <li>Bilgi güvenliği, kötüye kullanımın önlenmesi, hata giderme — meşru menfaat (m.5/2-f); mevzuattan doğan saklama yükümlülüğü varsa hukuki yükümlülük (m.5/2-ç).</li>
+    <li>Ebeveyn hesabının açılması ve girişin sağlanması — sözleşmenin kurulması ve ifası (m.5/2-c).</li>
+    <li>Çocuğun ilerlemesinin ebeveyn hesabına yedeklenmesi ve cihazlar arasında taşınması — ebeveynin talep ettiği hizmetin ifası (m.5/2-c) önerilmektedir; çocuğa ilişkin verinin bu sebeple işlenip işlenemeyeceği ya da açık rıza gerekip gerekmediği hukukçu tarafından değerlendirilecektir.</li>
+    <li>Silme ve başvuru taleplerinin yerine getirilmesi ve ispatı — hukuki yükümlülük (m.5/2-ç), bir hakkın tesisi ve korunması (m.5/2-e).</li>
+    <li>Destek taleplerinin cevaplanması — m.5/2-c ve m.5/2-f.</li>
+  </ul>
+  <p>Kişisel veriler reklam, pazarlama, profilleme ya da satış amacıyla işlenmez.</p>
+
+  <h2 id="yontem">4. Toplama yöntemi</h2>
+  <p>Uygulama sunucularımızla ve güncelleme hizmetiyle iletişim kurduğunda otomatik yollarla; ebeveyn hesabı açıldığında ve kullanıldığında uygulama ve kimlik doğrulama hizmeti üzerinden; Google ya da Apple ile girişte ilgili sağlayıcı üzerinden; bize e-posta ya da KEP ile yazdığınızda.</p>
+
+  <h2 id="aktarim">5. Kişisel verilerin aktarılması</h2>
+  <p>Yukarıdaki amaçlarla sınırlı olarak; kimlik doğrulama hizmeti (Supabase), uygulama güncelleme hizmeti (Expo), sunucu barındırma sağlayıcısı, e-posta gönderim hizmeti ve seçmeniz hâlinde giriş sağlayıcıları (Google, Apple) gibi <b>hizmet aldığımız tedarikçilere</b>; hukuki talep hâlinde <b>yetkili kamu kurum ve kuruluşlarına</b>. Tedarikçilerin listesi, veri yerleri ve rolleri <a href="/tr/gizlilik#share">Gizlilik Politikası</a>'ndadır.</p>
+  <p>Yurt dışına aktarım KVKK m.9'a göre yapılır: {DECISIONS.transfers?.tr ?? <Todo lang="tr">her tedarikçi için mekanizma ve tarihler</Todo>}</p>
+
+  <h2 id="haklar">6. KVKK m.11 kapsamındaki haklarınız</h2>
+  <p>Veri sorumlusuna başvurarak:</p>
+  <ol type="a">
+    <li>kişisel verilerinizin işlenip işlenmediğini öğrenme,</li>
+    <li>işlenmişse buna ilişkin bilgi talep etme,</li>
+    <li>işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme,</li>
+    <li>yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme,</li>
+    <li>eksik veya yanlış işlenmişse düzeltilmesini isteme,</li>
+    <li>KVKK m.7'deki şartlar çerçevesinde silinmesini veya yok edilmesini isteme,</li>
+    <li>(e) ve (f) bentleri uyarınca yapılan işlemlerin, verilerin aktarıldığı üçüncü kişilere bildirilmesini isteme,</li>
+    <li>münhasıran otomatik sistemlerle analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme,</li>
+    <li>kanuna aykırı işleme sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme</li>
+  </ol>
+  <p>haklarına sahipsiniz. Çocuğa ilişkin veriler için bu hakları çocuğun yasal temsilcisi kullanır.</p>
+
+  <h2 id="basvuru">7. Başvuru</h2>
+  <p>Resmî başvuru yolları <a href="/tr/basvuru">Veri sahibi başvurusu</a> sayfasındadır; yalnızca hesabınızı silmek için daha kısa bir yol vardır: <a href="/tr/hesap-silme">Hesabı ve verileri silme</a>. Başvurular talebin niteliğine göre en kısa sürede ve en geç <b>otuz gün</b> içinde ücretsiz sonuçlandırılır; işlemin ayrıca bir maliyet gerektirmesi hâlinde Kurul'un belirlediği tarifedeki ücret alınabilir.</p>
+</Legal>

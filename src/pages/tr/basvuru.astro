@@ -1,0 +1,77 @@
+---
+import Legal from "../../layouts/Legal.astro";
+import Ctl from "../../components/Ctl.astro";
+import { SITE } from "../../site";
+---
+<Legal lang="tr" page="request" eyebrow="KVKK"
+  title="Veri sahibi başvurusu"
+  path="/basvuru"
+  description="KVKK m.11 kapsamındaki haklarınızı kullanmak için GlotKids'e nasıl başvurursunuz: yollar, gereken bilgiler, süre ve yazdırılabilir başvuru formu."
+  intro="KVKK m.11'deki haklarınızı kullanmak için bize nasıl başvuracağınızı burada anlatıyoruz. Yalnızca ebeveyn hesabınızı silmek istiyorsanız daha kısa bir yol var: Hesabı ve verileri silme."
+  toc={[["yollar", "Başvuru yolları"], ["bilgiler", "Başvuruda olması gerekenler"], ["sure", "Süre ve ücret"], ["form", "Başvuru formu"]]}
+>
+  <div class="note"><b>Yalnızca hesabınızı ya da yedeğinizi silmek mi istiyorsunuz?</b> Bunun için resmî başvuru gerekmez; kimlik numarası ya da imza istemeyiz: <a href="/tr/hesap-silme">Hesabı ve verileri silme</a>. Bu sayfa, KVKK m.13 ve Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ kapsamındaki resmî başvurular içindir.</div>
+
+  <h2 id="yollar">Başvuru yolları</h2>
+  <p>Veri Sorumlusuna Başvuru Usul ve Esasları Hakkında Tebliğ uyarınca başvurunuzu Türkçe ve aşağıdaki yollardan biriyle yapabilirsiniz:</p>
+  <ul>
+    <li><b>Yazılı olarak</b>, ıslak imzalı dilekçe ya da aşağıdaki formla: <Ctl k="address" lang="tr" /></li>
+    <li><b>Kayıtlı elektronik posta (KEP)</b> ile: <Ctl k="kep" lang="tr" /></li>
+    <li><b>Güvenli elektronik imza ya da mobil imza</b> ile imzalanmış e-postayla: <Ctl k="privacyEmail" lang="tr" link /></li>
+    <li>GlotKids ebeveyn hesabınızın <b>kayıtlı e-posta adresinden</b>: <Ctl k="privacyEmail" lang="tr" link /> (konu satırına "KVKK Başvurusu" yazın)</li>
+  </ul>
+
+  <h2 id="bilgiler">Başvuruda olması gerekenler</h2>
+  <ul>
+    <li>Adınız, soyadınız ve yazılı başvuruda imzanız</li>
+    <li>T.C. vatandaşıysanız T.C. kimlik numaranız; değilseniz uyruğunuz ve pasaport ya da kimlik numaranız</li>
+    <li>Tebligata esas yerleşim yeri ya da iş yeri adresiniz</li>
+    <li>Varsa bildirime esas e-posta adresiniz, telefon ya da faks numaranız</li>
+    <li>Talebinizin konusu</li>
+    <li>Talep bir ebeveyn hesabıyla ilgiliyse, o hesabın e-posta adresi</li>
+  </ul>
+  <p>Bu bilgiler resmî başvurunun Tebliğ'deki unsurlarıdır; yalnız başvuruyu cevaplamak için kullanılır. Başkasının verisini yanlışlıkla ona vermemek için, talebin hesap sahibinden geldiğini doğrulamamız gerekirse, gereğinden fazla belge değil, hesapla ilgili makul bir doğrulama isteriz. Hesapsız kullanımda telefonda kalan oyun ilerlemesi bize gelmez; ona biz erişemeyiz.</p>
+
+  <h2 id="sure">Süre ve ücret</h2>
+  <p>Başvurunuzu talebin niteliğine göre en kısa sürede ve en geç <b>30 gün</b> içinde sonuçlandırırız. Kural olarak ücretsizdir; işlemin ayrıca bir maliyet gerektirmesi hâlinde Kurul'un belirlediği tarifedeki ücret alınabilir. Talebiniz reddedilirse gerekçesini yazılı ya da elektronik olarak bildiririz. Cevabımızı yetersiz bulursanız ya da süresinde cevap vermezsek, cevabı öğrendiğiniz tarihten itibaren 30 gün ve her hâlde başvuru tarihinden itibaren 60 gün içinde Kişisel Verileri Koruma Kurulu'na şikâyette bulunabilirsiniz.</p>
+
+  <h2 id="form">Başvuru formu</h2>
+  <p>Formu ekranda doldurup yazdırabilir ya da PDF olarak kaydedip imzalayabilirsiniz. Bu sayfa yazdıklarınızı hiçbir yere göndermez ve kaydetmez.</p>
+  <form class="card kvkk-form" onsubmit="return false">
+    <p><b>Veri sorumlusu:</b> <Ctl k="legalName" lang="tr" /> — {SITE.name}</p>
+    <label>Adı soyadı<input name="ad" autocomplete="off" /></label>
+    <label>T.C. kimlik no / uyruk ve pasaport no<input name="kimlik" autocomplete="off" /></label>
+    <label>Adres<textarea name="adres" rows="2"></textarea></label>
+    <label>E-posta / telefon<input name="iletisim" autocomplete="off" /></label>
+    <label>İlgili GlotKids hesabının e-posta adresi (varsa)<input name="hesap" autocomplete="off" /></label>
+    <label class="ck"><input type="checkbox" /> Bu başvuruyu çocuğum adına, yasal temsilcisi olarak yapıyorum</label>
+    <fieldset>
+      <legend>Talebim</legend>
+      <label class="ck"><input type="checkbox" /> Kişisel verilerimin işlenip işlenmediğini ve işleniyorsa bilgisini istiyorum</label>
+      <label class="ck"><input type="checkbox" /> İşleme amacını ve aktarıldığı kişileri öğrenmek istiyorum</label>
+      <label class="ck"><input type="checkbox" /> Eksik ya da yanlış verilerin düzeltilmesini istiyorum</label>
+      <label class="ck"><input type="checkbox" /> Verilerimin silinmesini / yok edilmesini istiyorum</label>
+      <label class="ck"><input type="checkbox" /> Bu işlemlerin aktarılan kişilere bildirilmesini istiyorum</label>
+      <label class="ck"><input type="checkbox" /> Diğer (aşağıda açıklıyorum)</label>
+    </fieldset>
+    <label>Açıklama<textarea name="aciklama" rows="4"></textarea></label>
+    <label>Cevabın gönderilmesini istediğim yol<input name="yol" placeholder="E-posta / posta / KEP" autocomplete="off" /></label>
+    <div class="sign"><span>Tarih:</span><span>İmza:</span></div>
+    <button class="btn sky" type="button" onclick="window.print()">Yazdır ya da PDF olarak kaydet</button>
+  </form>
+  <style>
+    .kvkk-form { display: grid; gap: 14px; }
+    .kvkk-form label { display: grid; gap: 4px; font-weight: 600; font-size: 0.98rem; }
+    .kvkk-form input, .kvkk-form textarea { font: inherit; font-weight: 400; padding: 10px 12px; border-radius: 12px; border: 2px solid var(--line); background: #fff; }
+    .kvkk-form fieldset { border: 2px solid var(--line); border-radius: 14px; padding: 10px 14px; display: grid; gap: 6px; }
+    .kvkk-form legend { font-family: var(--display); font-weight: 600; padding: 0 6px; }
+    .kvkk-form .ck { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; }
+    .kvkk-form .ck input { margin-top: 6px; }
+    .kvkk-form .sign { display: flex; justify-content: space-between; padding: 26px 0 8px; font-weight: 600; }
+    @media print {
+      .top, .foot, .toc, .page-head .lead, .kvkk-form .btn, .prose > *:not(.kvkk-form):not(#form) { display: none !important; }
+      .doc { display: block; padding: 0; }
+      .kvkk-form { border: 0; }
+    }
+  </style>
+</Legal>
