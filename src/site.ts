@@ -22,7 +22,7 @@ export type L = { en: string; tr: string };
 export const SITE = {
   name: "GlotKids",
   /** the live address, "https://…" -- unknown until the domain is bought */
-  url: null as string | null,
+  url: "https://glotkids.imtiyaz.io" as string | null,
   urlVerified: false,
   ages: "4–8",
   /** the date the legal texts are approved, ISO "YYYY-MM-DD" */
