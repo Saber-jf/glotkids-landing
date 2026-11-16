@@ -8,8 +8,8 @@ interface Props { lang: Lang }
 const { lang } = Astro.props;
 const en = lang === "en";
 const toc: [string, string][] = en
-  ? [["method", "How it teaches"], ["worlds", "How a world works"], ["help", "Help, step by step"], ["gate", "The parental gate"], ["account", "Do I need an account?"], ["internet", "Internet and downloads"], ["time", "Screen time and pausing"], ["sound", "Sound"], ["safety", "Our commitments"]]
-  : [["method", "Nasıl öğretir?"], ["worlds", "Bir dünya nasıl ilerler?"], ["help", "Adım adım yardım"], ["gate", "Ebeveyn kapısı"], ["account", "Hesap gerekli mi?"], ["internet", "İnternet ve indirmeler"], ["time", "Ekran süresi ve durdurma"], ["sound", "Ses"], ["safety", "Taahhütlerimiz"]];
+  ? [["method", "How it teaches"], ["worlds", "How a world works"], ["help", "Help, step by step"], ["gate", "The parental gate"], ["account", "Do I need an account?"], ["area", "The parent's area"], ["internet", "Internet and downloads"], ["time", "Screen time and pausing"], ["sound", "Sound"], ["safety", "Our commitments"]]
+  : [["method", "Nasıl öğretir?"], ["worlds", "Bir dünya nasıl ilerler?"], ["help", "Adım adım yardım"], ["gate", "Ebeveyn kapısı"], ["account", "Hesap gerekli mi?"], ["area", "Ebeveyn alanı"], ["internet", "İnternet ve indirmeler"], ["time", "Ekran süresi ve durdurma"], ["sound", "Ses"], ["safety", "Taahhütlerimiz"]];
 ---
 <Legal lang={lang} page="parents" toc={toc} dated={false}
   title={en ? "For parents" : "Ebeveynler için"} eyebrow={en ? "Parents' guide" : "Ebeveyn rehberi"}
@@ -44,6 +44,9 @@ const toc: [string, string][] = en
 
   <h2 id="account">{en ? "Do I need an account?" : "Hesap gerekli mi?"}</h2>
   <p>{en ? "No. Without an account, progress stays on the device. A parent account (email code, Google or Apple) keeps a copy of the progress with your account so you can continue on another device; no name or birth date is asked for your child. You can delete it in the app at any time." : "Hayır. Hesap yoksa ilerleme cihazda kalır. Ebeveyn hesabı (e-posta kodu, Google ya da Apple) ilerlemenin bir kopyasını hesabınıza bağlı tutar; başka bir cihazda devam edebilirsiniz. Çocuğunuz için ad ya da doğum tarihi istenmez. Hesabı uygulamada istediğiniz zaman silebilirsiniz."} <a href={href("privacy", lang)}>{en ? "Privacy Policy" : "Gizlilik Politikası"}</a></p>
+
+  <h2 id="area">{en ? "The parent's area" : "Ebeveyn alanı"}</h2>
+  <p>{en ? "Behind the parental gate: the days played this week, the activities finished, the words met, the words your child has found on their own often enough, and two or three words to practise together, with an idea for doing it at home. For each word: when it was last met, and in how many recent questions it was found first time without help. Where there are too few questions, it says so. It is a summary of what the app saw, not a measure of learning, and it stays on the device." : "Ebeveyn kapısının arkasında: bu hafta oynanan günler, tamamlanan etkinlikler, tanışılan kelimeler, çocuğunuzun yeterince kez kendi başına bulduğu kelimeler ve evde birlikte yapabileceğiniz bir fikirle iki üç tekrar önerisi. Her kelime için son karşılaşma ve son uygun sorulardan kaçında ilk seçimde yardımsız bulunduğu. Soru azsa bunu açıkça söyler. Uygulamanın gördüklerinin bir özetidir, bir öğrenme ölçümü değildir; bilgiler cihazda kalır."}</p>
 
   <h2 id="internet">{en ? "Internet and downloads" : "İnternet ve indirmeler"}</h2>
   <p>{en ? "The first worlds come with the app. Later worlds are downloaded as your child moves on, and updates arrive over the internet; downloaded content is kept on the device. The app is not designed to be used fully offline." : "İlk dünyalar uygulamayla gelir. Sonraki dünyalar çocuk ilerledikçe iner, güncellemeler internetle gelir; inen içerik cihazda saklanır. Uygulama tamamen internetsiz kullanılmak üzere tasarlanmadı."}</p>

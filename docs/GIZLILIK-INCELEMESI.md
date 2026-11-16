@@ -360,3 +360,18 @@ Kaynaklar 16 Kasım 2026'da açıldı: Lingokids, Sago Mini ve Toca Boca gizlili
 - Supabase ve Expo'nun bölge ve sözleşme (DPA) kontrolü.
 
 Hukukçu onayı ve uygulama düzeltmeleri de bekliyor.
+
+---
+
+## 13. Ebeveyn alanı ve oyun kayıtları (16 Kasım 2026)
+
+Veri haritasına iki yeni satır ekleniyor:
+
+| # | Veri | Kime ait | Ne zaman / amaç | Nereye gider | Saklama ve silme | Kanıt |
+|---|---|---|---|---|---|---|
+| D14 | Oyun oturumları: profil kimliği, kategori, oyun, durak, tür, başlangıç, bitiş şekli | Çocuk | Kategori içindeki her oyun ve şarkı; ebeveyn alanı için | **Yalnız telefon** (`Documents/progress/evidence.json`). Hesap yedeğine girmez | En çok 2500 oturum. Sıfırlama ("Başa dön" ya da ebeveyn alanı) o profilinkileri siler; uygulamayı silmek hepsini siler | `loplop/src/core/evidence.ts`, `src/platform/evidence.ts` |
+| D15 | Cevaplanan sorular: kelime, ilk seçim doğru mu, yardım kullanıldı mı, cevap gösterildi mi, ses açık mıydı, kanıt türü | Çocuk | Ustalık oyunlarında, Piknik'te, Bul bakalım'da, Saklambaç'ta, Bavul'da ve Renkli toplar'da cevap verilince | Yalnız telefon | En çok 6000 cevap; silme D14 ile aynı | `loplop/src/ui/playScope.tsx` |
+
+Sunucuda, panelde ve veritabanında değişiklik yok: kayıtlar hesap yedeğine eklenmedi. Bu yüzden sitedeki "hesap yedeği yalnız ilerleme belgesini içerir" cümlesi hâlâ doğru.
+
+Gizlilik Politikası'nın "Cihazda" bölümü (İngilizce ve Türkçe) bu iki kaydı anlatıyor. Ana sayfadaki "Planlanıyor" bölümü artık uygulamadaki ebeveyn alanını anlatıyor.
