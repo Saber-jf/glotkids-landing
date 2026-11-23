@@ -1,0 +1,163 @@
+---
+/*
+ * The Privacy Policy, in either language: one source, so the two can't drift.
+ * The shape is the company's other app's (glotcast.com/privacy; user,
+ * 2026-11-20): plain numbered sections for a global app, providers by
+ * category, one contact address.
+ *
+ * What differs is what GlotKids IS, and the page must say that, not copy the
+ * other app: GlotKids is made FOR children, has no ads, no advertising ID,
+ * no analytics and no crash reporting, works without an account, and keeps
+ * the child's progress on the device. If the app gains purchases, analytics,
+ * or starts saving what onboarding asks, this page changes first.
+ */
+import Legal from "../layouts/Legal.astro";
+import { SITE } from "../site";
+import { href, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const en = lang === "en";
+const mail = SITE.email;
+---
+<Legal lang={lang} page="privacy"
+  title={en ? "Privacy Policy" : "Gizlilik Politikası"} eyebrow={en ? "Privacy" : "Gizlilik"}
+  description={en
+    ? "What GlotKids collects, why, and the choices you have."
+    : "GlotKids hangi verileri toplar, neden toplar ve hangi seçenekleriniz var."}
+  intro={en
+    ? "This policy explains what data GlotKids collects, why, and the choices you have. We collect as little as possible and never sell personal data."
+    : "Bu politika GlotKids'in hangi verileri topladığını, nedenini ve seçeneklerinizi açıklar. Olabildiğince az veri toplarız ve kişisel verileri asla satmayız."}>
+
+  <h2>{en ? "1. Who we are" : "1. Biz kimiz"}</h2>
+  {en
+    ? <p>GlotKids ("we") is the controller of the personal data described here. You can reach us at <a href={`mailto:${mail}`}>{mail}</a>.</p>
+    : <p>GlotKids ("biz"), burada anlatılan kişisel verilerin sorumlusudur. Bize <a href={`mailto:${mail}`}>{mail}</a> adresinden ulaşabilirsiniz.</p>}
+
+  <h2>{en ? "2. What we collect" : "2. Hangi verileri topluyoruz"}</h2>
+  {en
+    ? <>
+        <p>The app works without an account, and without one we do not receive your child's progress.</p>
+        <ul>
+          <li><b>Progress on the device.</b> The words met, the games and worlds finished and the place on the map are kept in the app's own storage on the device, under a random profile ID. Without a parent account this is not sent to us.</li>
+          <li><b>Parent account data (optional).</b> If a parent signs in with an email code, Google or Apple, we receive the email address and a unique account ID, and use them to create and authenticate the account. With Apple you may hide your email.</li>
+          <li><b>Progress backup (only with an account).</b> A copy of the progress described above is kept with the parent account, so the child can continue on another device.</li>
+          <li><b>Device and technical data.</b> When the app downloads content or checks for an update: IP address, operating system, app version and a random identifier for this installation. We use it to deliver the Service and keep it secure.</li>
+          <li><b>Communications.</b> If you email us, we keep the message so we can reply. We do not send marketing email without your explicit consent.</li>
+        </ul>
+        <p>During setup the app may ask a parent for the child's first name, age and a few words about them, to show them on the screen. These answers are not stored and are not sent to us.</p>
+        <p><b>What we do not collect:</b> a child's surname, birth date, photos, videos or voice; microphone, camera, contacts or location access; advertising identifiers; payment card details.</p>
+      </>
+    : <>
+        <p>Uygulama hesapsız çalışır ve hesap yokken çocuğunuzun ilerlemesi bize ulaşmaz.</p>
+        <ul>
+          <li><b>Cihazdaki ilerleme.</b> Tanışılan kelimeler, biten oyunlar ve dünyalar ile haritadaki yer, rastgele bir profil kimliğiyle, uygulamanın cihazdaki kendi alanında tutulur. Ebeveyn hesabı yoksa bize gönderilmez.</li>
+          <li><b>Ebeveyn hesabı verileri (isteğe bağlı).</b> Ebeveyn e-posta kodu, Google ya da Apple ile giriş yaparsa e-posta adresini ve benzersiz bir hesap kimliğini alır, hesabı oluşturmak ve doğrulamak için kullanırız. Apple'da e-postanızı gizleyebilirsiniz.</li>
+          <li><b>İlerleme yedeği (yalnızca hesap varsa).</b> Yukarıdaki ilerlemenin bir kopyası ebeveyn hesabıyla birlikte tutulur; böylece çocuk başka bir cihazda devam edebilir.</li>
+          <li><b>Cihaz ve teknik veriler.</b> Uygulama içerik indirirken ya da güncelleme sorarken: IP adresi, işletim sistemi, uygulama sürümü ve bu kuruluma özgü rastgele bir kimlik. Hizmet'i sunmak ve güvende tutmak için kullanırız.</li>
+          <li><b>Yazışmalar.</b> Bize e-posta yazarsanız cevap verebilmek için mesajı saklarız. Açık onayınız olmadan pazarlama e-postası göndermeyiz.</li>
+        </ul>
+        <p>Kurulum sırasında uygulama, ekranda göstermek için ebeveynden çocuğun adını, yaşını ve onu anlatan birkaç kelimeyi isteyebilir. Bu cevaplar saklanmaz ve bize gönderilmez.</p>
+        <p><b>Toplamadıklarımız:</b> çocuğun soyadı, doğum tarihi, fotoğrafı, videosu ya da sesi; mikrofon, kamera, rehber ya da konum erişimi; reklam kimlikleri; ödeme kartı bilgileri.</p>
+      </>}
+
+  <h2>{en ? "3. Why we use your data" : "3. Verileri neden kullanıyoruz"}</h2>
+  {en
+    ? <ul>
+        <li>to provide the Service: games, content and updates;</li>
+        <li>to remember progress across devices, when a parent account is used;</li>
+        <li>to keep the Service secure and fix problems;</li>
+        <li>to answer support requests;</li>
+        <li>to comply with legal obligations.</li>
+      </ul>
+    : <ul>
+        <li>Hizmet'i sunmak: oyunlar, içerik ve güncellemeler;</li>
+        <li>ebeveyn hesabı kullanıldığında ilerlemeyi cihazlar arasında hatırlamak;</li>
+        <li>Hizmet'i güvende tutmak ve sorunları gidermek;</li>
+        <li>destek taleplerini yanıtlamak;</li>
+        <li>yasal yükümlülükleri yerine getirmek.</li>
+      </ul>}
+
+  <h2>{en ? "4. Legal bases (EEA/UK)" : "4. Hukuki dayanaklar (AEA/Birleşik Krallık)"}</h2>
+  {en
+    ? <p>Under the GDPR and the UK GDPR we rely on: performance of a contract (providing the Service and the account), legitimate interests (security and improving the Service), consent (for anything optional) and legal obligation.</p>
+    : <p>GDPR ve Birleşik Krallık GDPR'ı kapsamında şunlara dayanırız: sözleşmenin ifası (Hizmet'in ve hesabın sunulması), meşru menfaat (güvenlik ve Hizmet'in geliştirilmesi), rıza (isteğe bağlı her şey için) ve hukuki yükümlülük.</p>}
+
+  <h2>{en ? "5. Service providers" : "5. Hizmet sağlayıcılar"}</h2>
+  {en
+    ? <>
+        <p>We use a small number of providers, under contracts that limit their use of data to the purpose stated:</p>
+        <ul>
+          <li>cloud hosting, storage and databases (account data and the progress backup);</li>
+          <li>authentication providers, including Google and Apple (sign-in);</li>
+          <li>email delivery (sign-in codes and account emails);</li>
+          <li>app update delivery (technical data).</li>
+        </ul>
+        <p>These providers may not use the data for their own advertising or sell it. We use no advertising networks, no product analytics and no crash-reporting services.</p>
+      </>
+    : <>
+        <p>Az sayıda sağlayıcıyla, veriyi yalnızca belirtilen amaçla kullanmalarını şart koşan sözleşmelerle çalışırız:</p>
+        <ul>
+          <li>bulut barındırma, depolama ve veritabanı (hesap verileri ve ilerleme yedeği);</li>
+          <li>Google ve Apple dahil kimlik doğrulama sağlayıcıları (giriş);</li>
+          <li>e-posta gönderimi (giriş kodları ve hesap e-postaları);</li>
+          <li>uygulama güncellemelerinin dağıtımı (teknik veriler).</li>
+        </ul>
+        <p>Bu sağlayıcılar veriyi kendi reklamları için kullanamaz ve satamaz. Reklam ağı, ürün analitiği ya da çökme raporlama servisi kullanmıyoruz.</p>
+      </>}
+
+  <h2>{en ? "6. No ads, no tracking" : "6. Reklam ve izleme yok"}</h2>
+  {en
+    ? <p>GlotKids shows no advertising. It does not read the device's advertising identifier, does not ask to track you across other apps or websites, and builds no advertising profiles.</p>
+    : <p>GlotKids reklam göstermez. Cihazın reklam kimliğini okumaz, sizi başka uygulamalarda ya da sitelerde izlemek için izin istemez ve reklam profili oluşturmaz.</p>}
+
+  <h2>{en ? "7. Retention" : "7. Saklama süresi"}</h2>
+  {en
+    ? <p>Progress on the device stays until the app is deleted or the progress is reset. Account data and the progress backup are kept while the account is active. When you delete your account, we permanently remove your personal data within 30 days, except where the law requires us to keep something (for example tax or fraud records).</p>
+    : <p>Cihazdaki ilerleme, uygulama silinene ya da ilerleme sıfırlanana kadar kalır. Hesap verileri ve ilerleme yedeği hesap etkin olduğu sürece saklanır. Hesabınızı sildiğinizde kişisel verilerinizi, kanunun saklamamızı zorunlu kıldığı haller dışında (örneğin vergi ya da dolandırıcılık kayıtları), 30 gün içinde kalıcı olarak sileriz.</p>}
+
+  <h2>{en ? "8. Your rights" : "8. Haklarınız"}</h2>
+  {en
+    ? <p>You can ask for a copy of your data, correct it, delete your account and data, object to or restrict processing, and withdraw consent. Write to <a href={`mailto:${mail}`}>{mail}</a> or use the <a href={href("deletion", lang)}>account deletion page</a>. We respond within 30 days.</p>
+    : <p>Verilerinizin bir kopyasını isteyebilir, düzeltebilir, hesabınızı ve verilerinizi silebilir, işlemeye itiraz edebilir ya da işlemenin kısıtlanmasını isteyebilir ve rızanızı geri alabilirsiniz. <a href={`mailto:${mail}`}>{mail}</a> adresine yazın ya da <a href={href("deletion", lang)}>hesap silme sayfasını</a> kullanın. 30 gün içinde yanıt veririz.</p>}
+
+  <h2>{en ? "9. California residents" : "9. Kaliforniya'da yaşayanlar"}</h2>
+  {en
+    ? <p>Under the CCPA/CPRA you have the right to know, delete and correct your personal information, and not to be discriminated against for using these rights. We do not sell personal information and do not share it for cross-context behavioural advertising. Requests: <a href={`mailto:${mail}`}>{mail}</a>.</p>
+    : <p>CCPA/CPRA kapsamında kişisel bilgilerinizi öğrenme, silme ve düzeltme, bu hakları kullandığınız için ayrımcılığa uğramama hakkınız vardır. Kişisel bilgileri satmıyoruz ve bağlamlar arası davranışsal reklam için paylaşmıyoruz. Talepler: <a href={`mailto:${mail}`}>{mail}</a>.</p>}
+
+  <h2>{en ? "10. Children" : "10. Çocuklar"}</h2>
+  {en
+    ? <>
+        <p>GlotKids is made for children aged {SITE.ages}, so we built it to work without their personal information. A child cannot open an account, send us a message, post anything or contact other users. The app asks for no microphone, camera or location permission.</p>
+        <p>The optional account belongs to the parent or legal guardian and is opened behind a parental gate. The progress backup linked to it holds no name or birth date; we still treat it as information about your child, and you can review or delete it at any time (section 8).</p>
+        <p>If you believe a child has given us personal information, write to <a href={`mailto:${mail}`}>{mail}</a> and we will delete it.</p>
+      </>
+    : <>
+        <p>GlotKids {SITE.ages} yaş çocuklar için yapıldı; bu yüzden onların kişisel bilgisi olmadan çalışacak şekilde kuruldu. Çocuk hesap açamaz, bize mesaj gönderemez, bir şey paylaşamaz ve başka kullanıcılarla iletişim kuramaz. Uygulama mikrofon, kamera ya da konum izni istemez.</p>
+        <p>İsteğe bağlı hesap ebeveyne ya da yasal temsilciye aittir ve ebeveyn kapısının arkasında açılır. Hesaba bağlı ilerleme yedeğinde ad ya da doğum tarihi yoktur; yine de onu çocuğunuza ait bilgi sayarız ve istediğiniz zaman inceleyebilir ya da silebilirsiniz (8. bölüm).</p>
+        <p>Bir çocuğun bize kişisel bilgi verdiğini düşünüyorsanız <a href={`mailto:${mail}`}>{mail}</a> adresine yazın, sileriz.</p>
+      </>}
+
+  <h2>{en ? "11. International transfers" : "11. Uluslararası aktarım"}</h2>
+  {en
+    ? <p>Your data may be processed in countries other than your own. Where we transfer it, we rely on the safeguards required by applicable law, for example the European Commission's Standard Contractual Clauses.</p>
+    : <p>Verileriniz kendi ülkeniz dışındaki ülkelerde işlenebilir. Aktarım yaptığımızda, yürürlükteki hukukun gerektirdiği güvencelere, örneğin Avrupa Komisyonu'nun Standart Sözleşme Maddeleri'ne dayanırız.</p>}
+
+  <h2>{en ? "12. Security" : "12. Güvenlik"}</h2>
+  {en
+    ? <p>We use industry-standard measures, including encryption in transit, access controls and least-privilege principles. No system is perfectly secure, and we cannot guarantee absolute security.</p>
+    : <p>Aktarım sırasında şifreleme, erişim denetimleri ve en az yetki ilkesi dahil, sektör standardı önlemler kullanırız. Hiçbir sistem kusursuz güvenli değildir; mutlak güvenliği garanti edemeyiz.</p>}
+
+  <h2 id="site">{en ? "13. This website" : "13. Bu web sitesi"}</h2>
+  {en
+    ? <p>This website's own code sets no cookies and contains no analytics or advertising. The hosting provider keeps standard access logs (such as IP address and browser type) to deliver the site.</p>
+    : <p>Bu sitenin kendi kodu çerez yerleştirmez; analitik ya da reklam içermez. Barındırma sağlayıcısı siteyi ulaştırmak için olağan erişim kayıtlarını (IP adresi, tarayıcı türü gibi) tutar.</p>}
+
+  <h2>{en ? "14. Changes" : "14. Değişiklikler"}</h2>
+  {en
+    ? <p>If we make material changes to this policy, we will tell you in the app or by email before they take effect. The latest version and its effective date are always on this page.</p>
+    : <p>Bu politikada önemli bir değişiklik yaparsak, yürürlüğe girmeden önce uygulamada ya da e-postayla haber veririz. Güncel sürüm ve yürürlük tarihi her zaman bu sayfadadır.</p>}
+
+  <h2>{en ? "15. Contact" : "15. İletişim"}</h2>
+  <p>{en ? "Privacy questions? " : "Gizlilikle ilgili sorunuz mu var? "}<a href={`mailto:${mail}`}>{mail}</a></p>
+</Legal>

@@ -1,6 +1,5 @@
 ---
 import Base from "./Base.astro";
-import Todo from "../components/Todo.astro";
 import { SITE } from "../site";
 import { UI, fmtDate, type Lang, type Page } from "../i18n";
 
@@ -24,7 +23,7 @@ const t = UI[lang];
       <span class="eyebrow">{eyebrow}</span>
       <h1>{title}</h1>
       {intro && <p class="lead">{intro}</p>}
-      {dated && <p class="meta">{t.updated}: {SITE.legalUpdated ? fmtDate(SITE.legalUpdated, lang) : <Todo lang={lang}>{lang === "en" ? "approval date" : "onay tarihi"}</Todo>} · {t.version}: {SITE.legalVersion}</p>}
+      {dated && <p class="meta">{t.updated}: {fmtDate(SITE.legalUpdated, lang)}</p>}
     </div>
   </section>
   <div class="wrap">

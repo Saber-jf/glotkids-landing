@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { SITE, CONTROLLER } from "../site";
+import { SITE } from "../site";
 import { UI, ROUTES, href, type Lang, type Page } from "../i18n";
 
 interface Props { title: string; description: string; lang: Lang; page: Page | "404" }
@@ -92,8 +92,6 @@ const homeH = href("home", lang);
             <ul>
               <li><a href={href("privacy", lang)}>{t.footer.policy}</a></li>
               <li><a href={href("deletion", lang)}>{t.footer.deletion}</a></li>
-              <li><a href={href("kvkk", lang)} hreflang="tr">{t.footer.kvkk}</a></li>
-              {lang === "tr" && <li><a href={href("request", lang)}>{UI.tr.footer.request}</a></li>}
             </ul>
           </div>
           <div>
@@ -105,7 +103,7 @@ const homeH = href("home", lang);
           </div>
         </div>
         <div class="small">
-          <span>© {year} {CONTROLLER.legalName ?? SITE.name}. {t.rights}</span>
+          <span>© {year} {SITE.name}. {t.rights}</span>
           <span>{t.noCookies} <a href={`${href("privacy", lang)}#site`}>{lang === "en" ? "Details" : "Ayrıntı"}</a></span>
         </div>
       </div>

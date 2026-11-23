@@ -1,72 +1,122 @@
 ---
-/* Terms of Use, in either language: one source, so the two can't drift apart. */
+/*
+ * Terms & Conditions, in either language: one source, so the two can't drift.
+ * The shape is the company's other app's (glotcast.com/terms; user, 2026-11-20):
+ * fifteen plain numbered sections for a global app. What differs is what
+ * GlotKids is: an app for children, used with a parent, with an optional
+ * parent account.
+ */
 import Legal from "../layouts/Legal.astro";
-import Ctl from "./Ctl.astro";
-import Todo from "./Todo.astro";
-import { SITE, DECISIONS } from "../site";
+import { SITE } from "../site";
 import { href, type Lang } from "../i18n";
 interface Props { lang: Lang }
 const { lang } = Astro.props;
 const en = lang === "en";
-const toc: [string, string][] = en
-  ? [["who", "Who we are"], ["service", "The service"], ["parents", "Parents"], ["account", "Parent account"], ["licence", "Licence"], ["price", "Price"], ["ip", "Intellectual property"], ["liability", "Liability"], ["end", "Ending"], ["changes", "Changes"], ["law", "Governing law"], ["contact", "Contact"]]
-  : [["who", "Biz kimiz?"], ["service", "Hizmet"], ["parents", "Ebeveynler"], ["account", "Ebeveyn hesabı"], ["licence", "Kullanım lisansı"], ["price", "Ücret"], ["ip", "Fikri mülkiyet"], ["liability", "Sorumluluk"], ["end", "Sona erme"], ["changes", "Değişiklikler"], ["law", "Uygulanacak hukuk"], ["contact", "İletişim"]];
+const mail = SITE.email;
 ---
-<Legal lang={lang} page="terms" toc={toc}
-  title={en ? "Terms of Use" : "Kullanım Koşulları"} eyebrow={en ? "Legal" : "Yasal"}
+<Legal lang={lang} page="terms"
+  title={en ? "Terms & Conditions" : "Kullanım Koşulları"} eyebrow={en ? "Legal" : "Yasal"}
   description={en ? "The terms of use of the GlotKids app and website." : "GlotKids uygulamasının ve web sitesinin kullanım koşulları."}
-  intro={en ? "These terms are for parents and legal guardians. Your child uses the app with your permission and under your supervision." : "Bu koşullar ebeveynler ve yasal temsilciler içindir. Çocuğunuz uygulamayı sizin izninizle ve gözetiminizde kullanır."}>
+  intro={en
+    ? "These Terms are for parents and legal guardians. Your child uses GlotKids with your permission and under your supervision."
+    : "Bu koşullar ebeveynler ve yasal temsilciler içindir. Çocuğunuz GlotKids'i sizin izninizle ve gözetiminizde kullanır."}>
 
-  {!DECISIONS.legalReview && <p><Todo lang={lang}>{en ? "review by a lawyer" : "hukukçu tarafından gözden geçirilmesi"}</Todo></p>}
-
-  <h2 id="who">{en ? "1. Who we are" : "1. Biz kimiz?"}</h2>
+  <h2>{en ? "1. Acceptance of these Terms" : "1. Koşulların kabulü"}</h2>
   {en
-    ? <p>The {SITE.name} app and this website are provided by <Ctl k="legalName" lang={lang} />. By downloading or using the app you agree to these terms and acknowledge our <a href={href("privacy", lang)}>Privacy Policy</a>.</p>
-    : <p>{SITE.name} uygulaması ve bu site <Ctl k="legalName" lang={lang} /> tarafından sunulur. Uygulamayı indirerek ya da kullanarak bu koşulları kabul eder ve <a href={href("privacy", lang)}>Gizlilik Politikası</a>'nı okuduğunuzu beyan edersiniz.</p>}
+    ? <p>By downloading the app, creating an account or using any part of the Service, you agree to these Terms. If you do not agree, do not use the Service. The "Service" means the GlotKids mobile app, this website and related services.</p>
+    : <p>Uygulamayı indirerek, hesap açarak ya da Hizmet'in herhangi bir bölümünü kullanarak bu koşulları kabul edersiniz. Kabul etmiyorsanız Hizmet'i kullanmayın. "Hizmet", GlotKids mobil uygulamasını, bu web sitesini ve ilgili hizmetleri ifade eder.</p>}
 
-  <h2 id="service">{en ? "2. The service" : "2. Hizmet"}</h2>
+  <h2>{en ? "2. Who can use GlotKids" : "2. GlotKids'i kimler kullanabilir"}</h2>
   {en
-    ? <p>GlotKids introduces English words to Turkish-speaking children aged 4–8 through games, spoken instructions and animation. It does not replace a school, a teacher or formal language education, and it does not promise a particular learning result. The first worlds come with the app; later worlds and updates are downloaded over the internet, which may involve data charges from your provider.</p>
-    : <p>GlotKids, Türkçe konuşan 4–8 yaş çocukları oyunlar, sesli yönergeler ve animasyonlarla İngilizce kelimelerle tanıştırır. Bir okulun, öğretmenin ya da resmî dil eğitiminin yerine geçmez ve belirli bir öğrenme sonucu vaat etmez. İlk dünyalar uygulamayla gelir; sonraki dünyalar ve güncellemeler internetten iner (operatörünüz veri ücreti alabilir).</p>}
+    ? <p>GlotKids is made for children aged {SITE.ages}, to be used with the permission and under the supervision of a parent or legal guardian. These Terms are accepted by that adult, who must be of legal age in their country. Everything meant for adults in the app (the account, the parent's area, any purchase) is behind a parental gate and must be done by an adult.</p>
+    : <p>GlotKids {SITE.ages} yaş çocuklar için yapılmıştır ve bir ebeveynin ya da yasal temsilcinin izniyle ve gözetiminde kullanılır. Bu koşulları, ülkesinde reşit olan o yetişkin kabul eder. Uygulamada yetişkinlere ait her şey (hesap, ebeveyn alanı, satın alma) ebeveyn kapısının arkasındadır ve bir yetişkin tarafından yapılmalıdır.</p>}
 
-  <h2 id="parents">{en ? "3. Parents" : "3. Ebeveynler"}</h2>
+  <h2>{en ? "3. Your account" : "3. Hesabınız"}</h2>
   {en
-    ? <p>The adult who lets a child use the app is responsible for supervising that use and screen time. Actions meant for adults (the account, downloads, resetting progress) are behind a parental gate and should be done by an adult.</p>
-    : <p>Bir çocuğun uygulamayı kullanmasına izin veren yetişkin, bu kullanımı ve ekran süresini gözetmekten sorumludur. Yetişkinlere ait işlemler (hesap, indirmeler, ilerlemeyi sıfırlama) ebeveyn kapısının arkasındadır ve bir yetişkin tarafından yapılmalıdır.</p>}
+    ? <p>The app works without an account. A parent account is optional; you sign in with an email code, Google or Apple. No account is opened for a child. You are responsible for keeping your sign-in secure and for activity under your account. If you suspect unauthorised access, tell us right away at <a href={`mailto:${mail}`}>{mail}</a>.</p>
+    : <p>Uygulama hesapsız çalışır. Ebeveyn hesabı isteğe bağlıdır; e-posta kodu, Google ya da Apple ile giriş yapılır. Çocuk için hesap açılmaz. Giriş bilgilerinizi güvende tutmaktan ve hesabınızla yapılan işlemlerden siz sorumlusunuz. Yetkisiz erişimden şüphelenirseniz hemen <a href={`mailto:${mail}`}>{mail}</a> adresine yazın.</p>}
 
-  <h2 id="account">{en ? "4. Parent account" : "4. Ebeveyn hesabı"}</h2>
+  <h2>{en ? "4. Acceptable use" : "4. Kabul edilebilir kullanım"}</h2>
+  <p>{en ? "You agree not to:" : "Şunları yapmamayı kabul edersiniz:"}</p>
   {en
-    ? <p>The account is optional and may only be opened by a parent or legal guardian. Keep your sign-in secure. You can delete the account at any time (<a href={href("deletion", lang)}>how</a>). We may suspend an account that misuses the service or puts its security at risk.</p>
-    : <p>Hesap isteğe bağlıdır ve yalnızca ebeveyn ya da yasal temsilci tarafından açılabilir. Giriş bilgilerinizi güvende tutun. Hesabı istediğiniz zaman silebilirsiniz (<a href={href("deletion", lang)}>nasıl</a>). Hizmeti kötüye kullanan ya da güvenliğini tehlikeye atan bir hesabı askıya alabiliriz.</p>}
+    ? <ul>
+        <li>reverse-engineer, scrape or bulk-extract content from the Service;</li>
+        <li>resell, sublicense or redistribute the app's recordings, pictures, animations, music or games;</li>
+        <li>use the Service to harass, defraud or harm anyone;</li>
+        <li>interfere with the operation or security of the Service or its networks;</li>
+        <li>use bots or other automated tools, or bypass access or rate limits.</li>
+      </ul>
+    : <ul>
+        <li>Hizmet'in içeriğini tersine mühendislikle çözmek, kazımak ya da toplu olarak çıkarmak;</li>
+        <li>uygulamanın kayıtlarını, resimlerini, animasyonlarını, müziklerini ya da oyunlarını yeniden satmak, alt lisanslamak ya da dağıtmak;</li>
+        <li>Hizmet'i birini taciz etmek, dolandırmak ya da ona zarar vermek için kullanmak;</li>
+        <li>Hizmet'in ya da ağlarının işleyişine ya da güvenliğine müdahale etmek;</li>
+        <li>bot ya da başka otomatik araç kullanmak, erişim ya da hız sınırlarını aşmak.</li>
+      </ul>}
 
-  <h2 id="licence">{en ? "5. Licence" : "5. Kullanım lisansı"}</h2>
+  <h2>{en ? "5. Content and intellectual property" : "5. İçerik ve fikri mülkiyet"}</h2>
   {en
-    ? <p>We give you a personal, non-transferable, non-exclusive, revocable licence to use the app for non-commercial purposes on devices you own or control, under the rules of the store you downloaded it from. You may not copy, modify, reverse-engineer or redistribute the app or its content, except where the law allows. For apps downloaded from the App Store, Apple's standard licence agreement (EULA) also applies; Apple is not a party to these terms.</p>
-    : <p>Size uygulamayı ticari olmayan amaçlarla, sahip olduğunuz ya da kontrol ettiğiniz cihazlarda, indirdiğiniz mağazanın kurallarına uygun olarak kullanmanız için kişisel, devredilemez, münhasır olmayan ve geri alınabilir bir lisans veriyoruz. Kanunun izin verdiği haller dışında uygulamayı ya da içeriğini kopyalayamaz, değiştiremez, tersine mühendislik yapamaz, dağıtamazsınız. App Store'dan indirilen uygulama için Apple'ın standart lisans sözleşmesi (EULA) da geçerlidir; Apple bu koşulların tarafı değildir.</p>}
+    ? <p>The GlotKids name and logo, the characters Lili and Kuki, the drawings, animations, recordings, music, texts and software belong to GlotKids or its licensors. We give you a personal, non-exclusive, non-transferable, revocable licence to use the Service for your own family's learning. All rights not expressly granted are reserved. Third-party licences: <a href={href("licenses", lang)}>Licenses</a>.</p>
+    : <p>GlotKids adı ve logosu, Lili ve Kuki karakterleri, çizimler, animasyonlar, kayıtlar, müzikler, metinler ve yazılım GlotKids'e ya da lisans verenlerine aittir. Size, Hizmet'i kendi ailenizin öğrenmesi için kullanmanız üzere kişisel, münhasır olmayan, devredilemez ve geri alınabilir bir lisans veriyoruz. Açıkça verilmeyen bütün haklar saklıdır. Üçüncü taraf lisansları: <a href={href("licenses", lang)}>Lisanslar</a>.</p>}
 
-  <h2 id="price">{en ? "6. Price" : "6. Ücret"}</h2>
-  <p>{DECISIONS.pricing ? DECISIONS.pricing[lang] : <Todo lang={lang}>{en ? "pricing; if there are purchases: price, renewal, cancellation, withdrawal right and refunds" : "fiyatlandırma; satın alma varsa fiyat, yenileme, iptal, cayma hakkı ve iadeler"}</Todo>}</p>
-  <p>{en ? "Any purchase is made by an adult behind the parental gate, through the store's own payment system." : "Her satın alma ebeveyn kapısının arkasında, bir yetişkin tarafından, mağazanın kendi ödeme sistemiyle yapılır."}</p>
-
-  <h2 id="ip">{en ? "7. Intellectual property" : "7. Fikri mülkiyet"}</h2>
+  <h2>{en ? "6. User feedback" : "6. Geri bildirim"}</h2>
   {en
-    ? <p>The GlotKids name and logo, the characters Lili and Kuki, the drawings, animations, recordings, music, texts and software belong to us or our licensors. Third-party licences: <a href={href("licenses", lang)}>Licenses</a>.</p>
-    : <p>GlotKids adı ve logosu, Lili ve Kuki karakterleri, çizimler, animasyonlar, kayıtlar, müzikler, metinler ve yazılım bize ya da lisans verenlerimize aittir. Üçüncü taraf lisansları: <a href={href("licenses", lang)}>Lisanslar</a>.</p>}
+    ? <p>If you send us feedback, suggestions or ideas, you grant us a worldwide, royalty-free licence to use them to improve the Service.</p>
+    : <p>Bize geri bildirim, öneri ya da fikir gönderirseniz, bunları Hizmet'i geliştirmek için kullanmamız üzere dünya çapında, telifsiz bir lisans vermiş olursunuz.</p>}
 
-  <h2 id="liability">{en ? "8. Liability" : "8. Sorumluluk"}</h2>
+  <h2>{en ? "7. Subscriptions and payments" : "7. Abonelikler ve ödemeler"}</h2>
+  <p>{en ? "Where GlotKids offers paid subscriptions or one-time purchases:" : "GlotKids ücretli abonelik ya da tek seferlik satın alma sunduğunda:"}</p>
   {en
-    ? <p>We build the app with care but cannot guarantee it will always work without interruption or errors. To the extent the law allows, we are not liable for indirect loss, loss of progress kept on a device, or use outside the app's purpose. Your rights as a consumer are not affected.</p>
-    : <p>Uygulamayı özenle hazırlıyoruz; ama kesintisiz ya da hatasız çalışacağını garanti edemeyiz. Kanunun izin verdiği ölçüde dolaylı zararlardan, cihazda tutulan ilerlemenin kaybından ve uygulamanın amacı dışındaki kullanımdan sorumlu değiliz. Tüketici olarak haklarınız saklıdır.</p>}
+    ? <ul>
+        <li>Pricing, billing period and any free trial are shown in the app before you buy. Every purchase is behind the parental gate.</li>
+        <li>Payments and refunds are handled by the App Store or Google Play under their own terms; we do not receive or store full card details.</li>
+        <li>Subscriptions <b>renew automatically</b> unless cancelled at least 24 hours before the end of the current period. You manage and cancel them in your App Store or Google Play settings; cancellation takes effect at the end of the paid period.</li>
+        <li>If you cancel a free trial before it ends, you are not charged. If a trial converts, the standard renewal and cancellation rules apply.</li>
+        <li>We may change subscription prices for future periods, with advance notice and the chance to cancel first.</li>
+      </ul>
+    : <ul>
+        <li>Fiyat, faturalama dönemi ve varsa ücretsiz deneme, satın almadan önce uygulamada gösterilir. Her satın alma ebeveyn kapısının arkasındadır.</li>
+        <li>Ödemeler ve iadeler App Store ya da Google Play tarafından, kendi koşullarına göre yürütülür; kart bilgilerinin tamamını almayız ve saklamayız.</li>
+        <li>Abonelikler, dönemin bitiminden en az 24 saat önce iptal edilmedikçe <b>kendiliğinden yenilenir</b>. Aboneliği App Store ya da Google Play ayarlarınızdan yönetir ve iptal edersiniz; iptal, ödenmiş dönemin sonunda geçerli olur.</li>
+        <li>Ücretsiz denemeyi bitmeden iptal ederseniz ücret alınmaz. Deneme aboneliğe dönerse olağan yenileme ve iptal kuralları geçerlidir.</li>
+        <li>Abonelik fiyatlarını gelecek dönemler için, önceden haber vererek ve iptal etme imkânı tanıyarak değiştirebiliriz.</li>
+      </ul>}
 
-  <h2 id="end">{en ? "9. Ending" : "9. Sona erme"}</h2>
-  <p>{en ? "You can stop at any time by deleting the app and, if you have one, your account. If we ever stop the service, we will announce it reasonably in advance." : "Uygulamayı ve varsa hesabınızı silerek istediğiniz zaman sona erdirebilirsiniz. Hizmeti sonlandırırsak bunu makul bir süre önce duyururuz."}</p>
+  <h2>{en ? "8. Termination" : "8. Sona erme"}</h2>
+  {en
+    ? <p>You may stop using the Service and delete your account at any time (<a href={href("deletion", lang)}>how</a>). We may suspend or end access if these Terms are broken or if conduct creates a legal or operational risk.</p>
+    : <p>Hizmet'i kullanmayı istediğiniz zaman bırakabilir ve hesabınızı silebilirsiniz (<a href={href("deletion", lang)}>nasıl</a>). Bu koşullar ihlal edilirse ya da bir davranış hukuki ya da işletimsel risk doğurursa erişimi askıya alabilir ya da sonlandırabiliriz.</p>}
 
-  <h2 id="changes">{en ? "10. Changes" : "10. Değişiklikler"}</h2>
-  <p>{en ? "We may update these terms; the date is at the top. We announce important changes in the app and by email to account holders before they apply." : "Bu koşulları güncelleyebiliriz; tarih sayfanın başındadır. Önemli değişiklikleri yürürlüğe girmeden önce uygulamada ve hesap sahiplerine e-postayla duyururuz."}</p>
+  <h2>{en ? "9. Disclaimer" : "9. Sorumluluk reddi"}</h2>
+  {en
+    ? <p>The Service is provided <b>"as is"</b> and <b>"as available"</b>. We do not warrant that it will be uninterrupted or error-free, or that your child will reach any particular level of language ability. GlotKids does not replace a school, a teacher or formal language education.</p>
+    : <p>Hizmet <b>"olduğu gibi"</b> ve <b>"mevcut olduğu şekliyle"</b> sunulur. Kesintisiz ya da hatasız çalışacağını ya da çocuğunuzun belirli bir dil düzeyine ulaşacağını garanti etmeyiz. GlotKids bir okulun, öğretmenin ya da resmî dil eğitiminin yerine geçmez.</p>}
 
-  <h2 id="law">{en ? "11. Governing law" : "11. Uygulanacak hukuk"}</h2>
-  <p>{en ? "These terms are governed by the laws of the Republic of Türkiye. Consumers may apply to the consumer arbitration committees and consumer courts within the legal limits." : "Bu koşullar Türkiye Cumhuriyeti hukukuna tabidir. Tüketiciler, kanuni sınırlar içinde Tüketici Hakem Heyetlerine ve Tüketici Mahkemelerine başvurabilir."}</p>
+  <h2>{en ? "10. Limitation of liability" : "10. Sorumluluğun sınırlandırılması"}</h2>
+  {en
+    ? <p>To the maximum extent permitted by law, GlotKids is not liable for indirect, incidental, special, consequential or punitive damages, or for loss of data, profits or goodwill. Our total liability for any claim is limited to the greater of (a) the amount you paid us in the 12 months before the event giving rise to the claim, or (b) USD 50. Nothing in these Terms limits liability that cannot be excluded by law, such as for gross negligence, wilful misconduct or your statutory consumer rights.</p>
+    : <p>Kanunun izin verdiği azami ölçüde, GlotKids dolaylı, arızi, özel, sonuç olarak doğan ya da cezai zararlardan ve veri, kâr ya da itibar kaybından sorumlu değildir. Herhangi bir talep için toplam sorumluluğumuz, (a) talebe yol açan olaydan önceki 12 ayda bize ödediğiniz tutar ile (b) 50 ABD doları arasından büyük olanla sınırlıdır. Bu koşullardaki hiçbir hüküm, ağır ihmal, kasıt ya da kanuni tüketici haklarınız gibi kanunen kaldırılamayan sorumluluğu sınırlamaz.</p>}
 
-  <h2 id="contact">{en ? "12. Contact" : "12. İletişim"}</h2>
-  <p><Ctl k="legalName" lang={lang} /> · <Ctl k="address" lang={lang} /> · <Ctl k="supportEmail" lang={lang} link /></p>
+  <h2>{en ? "11. Changes to the Service or these Terms" : "11. Hizmet'te ve koşullarda değişiklik"}</h2>
+  {en
+    ? <p>We may update the Service and these Terms. For material changes we give reasonable notice, for example in the app or by email. Continuing to use the Service after the change means you accept the updated Terms.</p>
+    : <p>Hizmet'i ve bu koşulları güncelleyebiliriz. Önemli değişikliklerde, örneğin uygulamada ya da e-postayla, makul bir süre önce haber veririz. Değişiklikten sonra Hizmet'i kullanmaya devam etmeniz güncel koşulları kabul ettiğiniz anlamına gelir.</p>}
+
+  <h2>{en ? "12. Governing law" : "12. Uygulanacak hukuk"}</h2>
+  {en
+    ? <p>These Terms are governed by the laws of the country in which GlotKids is established, without regard to its conflict-of-laws rules. You may also have mandatory consumer rights in the country where you live.</p>
+    : <p>Bu koşullar, kanunlar ihtilafı kuralları dikkate alınmaksızın, GlotKids'in kurulu olduğu ülkenin hukukuna tabidir. Yaşadığınız ülkede ayrıca emredici tüketici haklarınız olabilir.</p>}
+
+  <h2>{en ? "13. App Store and Google Play" : "13. App Store ve Google Play"}</h2>
+  {en
+    ? <p>These Terms are between you and GlotKids only, not Apple or Google. Apple is not responsible for the Service or its content; Apple and its subsidiaries are third-party beneficiaries of these Terms and may enforce them. Maintenance and support are solely our responsibility. Equivalent terms apply to users on Google Play, and Google is not a party to these Terms.</p>
+    : <p>Bu koşullar yalnızca sizinle GlotKids arasındadır; Apple ya da Google taraf değildir. Apple, Hizmet'ten ya da içeriğinden sorumlu değildir; Apple ve bağlı şirketleri bu koşulların üçüncü taraf lehtarıdır ve koşulları uygulatabilir. Bakım ve destek yalnızca bizim sorumluluğumuzdadır. Google Play kullanıcıları için de aynı hükümler geçerlidir ve Google bu koşulların tarafı değildir.</p>}
+
+  <h2>{en ? "14. Miscellaneous" : "14. Çeşitli hükümler"}</h2>
+  {en
+    ? <p>If any provision of these Terms is found unenforceable, the rest remains in effect. We may assign these Terms in a merger, acquisition or sale of assets; you may not assign them without our prior written consent. These Terms and the <a href={href("privacy", lang)}>Privacy Policy</a> are the entire agreement between you and GlotKids on this subject and replace earlier agreements.</p>
+    : <p>Bu koşulların bir hükmü uygulanamaz bulunursa geri kalanı yürürlükte kalır. Bu koşulları birleşme, devralma ya da varlık satışında devredebiliriz; siz önceden yazılı onayımız olmadan devredemezsiniz. Bu koşullar ve <a href={href("privacy", lang)}>Gizlilik Politikası</a>, bu konuda sizinle GlotKids arasındaki anlaşmanın tamamıdır ve önceki anlaşmaların yerini alır.</p>}
+
+  <h2>{en ? "15. Contact" : "15. İletişim"}</h2>
+  <p>{en ? "Questions about these Terms? " : "Bu koşullarla ilgili sorunuz mu var? "}<a href={`mailto:${mail}`}>{mail}</a></p>
 </Legal>

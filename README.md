@@ -25,12 +25,9 @@ npm run assets     # uygulamanın görsellerini ../loplop'tan yeniden kopyalar
 | `/terms` | `/tr/kullanim-kosullari` | Kullanım Koşulları |
 | `/contact` | `/tr/iletisim` | İletişim |
 | `/licenses` | `/tr/lisanslar` | Lisanslar |
-| — | `/tr/kvkk-aydinlatma` | KVKK Aydınlatma Metni (yalnız Türkçe) |
-| — | `/tr/basvuru` | KVKK veri sahibi başvurusu (yalnız Türkçe) |
 
 Adresler ve dil seçici: `src/i18n.ts`. İki dilin metni aynı dosyada ya da aynı bileşende
-durur (`home-text.ts`, `content.ts`, `*Body.astro`); Gizlilik ve Hesap silme iki ayrı dosyadır
-ve bölüm bölüm aynı tutulur (bölüm kimlikleri aynı).
+durur (`home-text.ts`, `content.ts`, `*Body.astro`); Hesap silme iki ayrı dosyadır ve bölüm bölüm aynı tutulur.
 
 ## Görseller nereden geliyor?
 
@@ -46,20 +43,14 @@ Hepsi uygulamanın kendisinden (`npm run assets`):
 Uygulamanın içeriği değişince `src/content.ts` (dünyalar, kelimeler, SSS)
 uygulamayla birlikte güncellenir; sitede uygulamada olmayan bir şey yazılmaz.
 
-## Yayından önce doldurulacaklar
+## Yasal sayfalar
 
-Tek kaynak `src/site.ts` (`SITE`, `CONTROLLER`, `PROVIDERS`, `DECISIONS`); `null` = bilinmiyor.
-Sayfalar her boşluk için görünür bir "[Doldurulacak: …]" işareti basar, `npm run build`
-eksikleri listeler ve durur. Bir sayfadan kelimeyi silmek bir bilgiyi doğrulamaz: kontrol
-`src/site.ts`'i okur. Gizlilik incelemesi, veri haritası, mobil/sunucu planı ve mağaza
-kontrol listesi: **`docs/GIZLILIK-INCELEMESI.md`**.
+Koşullar ve gizlilik, şirketin öbür uygulaması GlotCast'in sayfalarının yapısındadır
+(glotcast.com/terms, /privacy; kullanıcı, 2026-11-20): global bir uygulama için on beş sade,
+numaralı bölüm, sağlayıcılar kategoriyle, tek iletişim adresi (`src/site.ts` → `SITE.email`).
+Ülkeye özel ek (KVKK aydınlatma, başvuru formu), "[Doldurulacak]" işaretleri ve yayını
+durduran bilgi listesi kaldırıldı. Metinler GlotKids'in yaptığını söyler: çocuklar için,
+reklamsız, analitiksiz, hesapsız çalışır. Uygulamaya satın alma, analitik ya da onboarding
+cevaplarının kaydı eklenirse önce bu sayfalar değişir. `docs/GIZLILIK-INCELEMESI.md` eski
+yaklaşımın araştırmasıdır; sayfalar artık ona bağlı değil.
 
-Eski özet liste:
-
-- Şirket unvanı, açık adres, MERSİS, KEP, gizlilik ve destek e-postası, alan adı
-- Sunucunun barındırma sağlayıcısı ve ülkesi; e-posta gönderim hizmeti
-- Yurt dışı aktarım: Supabase (ve diğerleri) ile KVKK standart sözleşmesi, Kurum'a bildirim tarihi
-- Saklama süreleri: kullanılmayan hesap, silme kaydı, sunucu kayıtları, destek yazışmaları
-- Fiyatlandırma (Kullanım Koşulları §7)
-- Geliştirici adının App Store / Google Play'dekiyle birebir aynı olması
-- Kullanım Koşulları'nın hukukçu tarafından gözden geçirilmesi
