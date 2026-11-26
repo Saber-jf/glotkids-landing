@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev --host",
     "build": "node scripts/check.mjs pre && ASTRO_TELEMETRY_DISABLED=1 astro build && node scripts/check.mjs post",
-    "build:draft": "DRAFT=1 ASTRO_TELEMETRY_DISABLED=1 astro build && DRAFT=1 node scripts/check.mjs post",
     "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview --host",
     "assets": "bash scripts/assets.sh"
   },

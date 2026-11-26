@@ -10,8 +10,6 @@ const full = title === SITE.name
   ? (lang === "en" ? `${SITE.name} — English words through play, for ages 4–8` : `${SITE.name} — çocuklar için oyunla İngilizce`)
   : `${title} · ${SITE.name}`;
 const year = 2026;
-/* a draft (dev server, or `npm run build:draft`): a banner and noindex on every page */
-const draft = import.meta.env.DEV || process.env.DRAFT === "1";
 const base = SITE.url ?? "https://taslak.invalid";
 const other: Lang = lang === "en" ? "tr" : "en";
 const here = page === "404" ? (lang === "en" ? "/404" : "/tr/404") : ROUTES[page][lang];
@@ -33,7 +31,6 @@ const homeH = href("home", lang);
         <link rel="alternate" hreflang="x-default" href={new URL(ROUTES[page].en, SITE.url).href} />
       </>
     )}
-    {draft && <meta name="robots" content="noindex, nofollow" />}
     <meta property="og:title" content={full} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL("/img/film/film-9.jpg", base).href} />
@@ -45,7 +42,6 @@ const homeH = href("home", lang);
   </head>
   <body>
     <a class="skip" href="#icerik">{t.skip}</a>
-    {draft && <div class="draft-bar" data-draft>{t.draft}</div>}
     <header class="top">
       <div class="wrap">
         <a class="logo" href={homeH} aria-label={`${SITE.name}`}><span class="a">Glot</span><span class="b">Kids</span></a>

@@ -9,7 +9,6 @@ barındırmaya (Cloudflare Pages, Netlify, kendi Caddy'niz…) olduğu gibi konu
 npm install
 npm run dev        # http://localhost:4321
 npm run build        # ÜRETİM: src/site.ts eksik/doğrulanmamışsa DURUR, eski dist/ silinir
-npm run build:draft  # TASLAK önizleme: dist-taslak/, her sayfada "TASLAK" bandı + noindex; yayımlanmaz
 npm run assets     # uygulamanın görsellerini ../loplop'tan yeniden kopyalar
 ```
 

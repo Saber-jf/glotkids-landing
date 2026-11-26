@@ -178,7 +178,6 @@ p { margin: 0 0 1em; }
 .note { background: var(--lilac-soft); border-radius: var(--r-md); padding: 14px 18px; margin: 1em 0; }
 .todo { background: #fff1c2; border: 2px dashed var(--sun-lip); border-radius: 8px; padding: 0 6px; font-weight: 600; }
 .meta { font-size: 0.95rem; color: var(--ink-soft); }
-.draft-bar { position: relative; z-index: 60; background: #fff1c2; color: #6b4b00; border-bottom: 2px dashed var(--sun-lip); font-weight: 600; font-size: 0.9rem; text-align: center; padding: 6px 12px; }
 .todo { background: #fff1c2; border: 2px dashed var(--sun-lip); border-radius: 8px; padding: 0 6px; font-weight: 600; color: #6b4b00; }
 /* the language switch */
 .top-right { display: none; align-items: center; gap: 8px; }

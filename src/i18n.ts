@@ -39,7 +39,6 @@ export const UI = {
       policy: "Privacy Policy", deletion: "Delete your account and data", terms: "Terms & Conditions", licenses: "Licenses" },
     rights: "All rights reserved.",
     noCookies: "This site's own code sets no cookies and uses no tracking.",
-    draft: "DRAFT — a preview, not the published site.",
     onPage: "On this page", updated: "Effective date",
   },
   tr: {
@@ -51,7 +50,6 @@ export const UI = {
       policy: "Gizlilik Politikası", deletion: "Hesabı ve verileri silme", terms: "Kullanım Koşulları", licenses: "Lisanslar" },
     rights: "Tüm hakları saklıdır.",
     noCookies: "Bu sitenin kendi kodu çerez ya da izleme aracı içermez.",
-    draft: "TASLAK — önizleme, yayımlanan site değil.",
     onPage: "Bu sayfada", updated: "Yürürlük tarihi",
   },
 } as const;
