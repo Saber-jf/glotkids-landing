@@ -33,8 +33,8 @@ const mail = SITE.email;
 
   <h2>{en ? "3. Your account" : "3. Hesabınız"}</h2>
   {en
-    ? <p>The app works without an account. A parent account is optional; you sign in with an email code, Google or Apple. No account is opened for a child. You are responsible for keeping your sign-in secure and for activity under your account. If you suspect unauthorised access, tell us right away at <a href={`mailto:${mail}`}>{mail}</a>.</p>
-    : <p>Uygulama hesapsız çalışır. Ebeveyn hesabı isteğe bağlıdır; e-posta kodu, Google ya da Apple ile giriş yapılır. Çocuk için hesap açılmaz. Giriş bilgilerinizi güvende tutmaktan ve hesabınızla yapılan işlemlerden siz sorumlusunuz. Yetkisiz erişimden şüphelenirseniz hemen <a href={`mailto:${mail}`}>{mail}</a> adresine yazın.</p>}
+    ? <p>The app works without an account. A parent account is optional; you sign in with Google or Apple. No account is opened for a child. You are responsible for keeping your sign-in secure and for activity under your account. If you suspect unauthorised access, tell us right away at <a href={`mailto:${mail}`}>{mail}</a>.</p>
+    : <p>Uygulama hesapsız çalışır. Ebeveyn hesabı isteğe bağlıdır; Google ya da Apple ile giriş yapılır. Çocuk için hesap açılmaz. Giriş bilgilerinizi güvende tutmaktan ve hesabınızla yapılan işlemlerden siz sorumlusunuz. Yetkisiz erişimden şüphelenirseniz hemen <a href={`mailto:${mail}`}>{mail}</a> adresine yazın.</p>}
 
   <h2>{en ? "4. Acceptable use" : "4. Kabul edilebilir kullanım"}</h2>
   <p>{en ? "You agree not to:" : "Şunları yapmamayı kabul edersiniz:"}</p>
@@ -104,8 +104,8 @@ const mail = SITE.email;
 
   <h2>{en ? "12. Governing law" : "12. Uygulanacak hukuk"}</h2>
   {en
-    ? <p>These Terms are governed by the laws of the country in which GlotKids is established, without regard to its conflict-of-laws rules. You may also have mandatory consumer rights in the country where you live.</p>
-    : <p>Bu koşullar, kanunlar ihtilafı kuralları dikkate alınmaksızın, GlotKids'in kurulu olduğu ülkenin hukukuna tabidir. Yaşadığınız ülkede ayrıca emredici tüketici haklarınız olabilir.</p>}
+    ? <p>GlotKids is published by {SITE.company}, {SITE.address}. These Terms are governed by the laws of England and Wales, without regard to its conflict-of-laws rules. You may also have mandatory consumer rights in the country where you live.</p>
+    : <p>GlotKids'i {SITE.company} ({SITE.addressTr}) yayınlar. Bu koşullar, kanunlar ihtilafı kuralları dikkate alınmaksızın, İngiltere ve Galler hukukuna tabidir. Yaşadığınız ülkede ayrıca emredici tüketici haklarınız olabilir.</p>}
 
   <h2>{en ? "13. App Store and Google Play" : "13. App Store ve Google Play"}</h2>
   {en

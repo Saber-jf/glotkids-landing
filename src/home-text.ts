@@ -34,7 +34,7 @@ export const H = {
            "Muzu Lili'ye verir, hayvanı trene bindirir, doğru rengi boyar. Her soruda birden çok seçenek vardır; çocuk kelimeyi gerçekten seçer.") },
   ],
   series: [
-    { tag: l("Game 1", "1. oyun"), h: l("Introduces", "Tanıştırır"), p: l("Words come two at a time on cards: picture, English, Turkish and a short description. The most help is here.", "Kelimeler ikişer ikişer kartla gelir; resim, İngilizcesi, Türkçesi ve kısa bir açıklama. En çok yardım burada.") },
+    { tag: l("Game 1", "1. oyun"), h: l("Introduces", "Tanıştırır"), p: l("Each word comes on a card: picture, English, Turkish and a short description. The most help is here.", "Her kelime kartla tanıtılır; resim, İngilizcesi, Türkçesi ve kısa bir açıklama. En çok yardım burada.") },
     { tag: l("Game 2", "2. oyun"), h: l("Practises", "Pekiştirir"), p: l("The same words in another place, in another game. No cards: the child finds the word they hear.", "Aynı kelimeler başka bir yerde, başka bir oyunda. Kart yok; kelimeyi duyan çocuk onu kendisi bulur.") },
     { tag: l("Game 3", "3. oyun"), h: l("Uses them quietly", "Sessizce dener"), p: l("No test screen, no points, no lives. The third game lets the child use the words with less help.", "Sınav ekranı, puan ya da can yok. Üçüncü oyunda çocuk kelimeleri daha az yardımla kullanır.") },
   ],
@@ -83,8 +83,8 @@ export const H = {
 
   trustEyebrow: l("Privacy and safety", "Gizlilik ve güvenlik"),
   trustH2: l("Little data, plainly explained", "Az veri, açık anlatım"),
-  trustLead: l("GlotKids works without asking for the child's name, age, voice or photo. Our Privacy Policy says what stays on the device and what goes over the internet.",
-               "GlotKids çocuğun adını, yaşını, sesini ya da fotoğrafını istemeden çalışır. Neyin cihazda kaldığını, neyin internete gittiğini Gizlilik Politikası'nda yazdık."),
+  trustLead: l("GlotKids works without the child's name, age, voice or photo; the few questions at the start are optional and their answers aren't kept. Our Privacy Policy says what stays on the device and what goes over the internet.",
+               "GlotKids çocuğun adı, yaşı, sesi ya da fotoğrafı olmadan çalışır; açılıştaki birkaç soru isteğe bağlıdır ve cevapları saklanmaz. Neyin cihazda kaldığını, neyin internete gittiğini Gizlilik Politikası'nda yazdık."),
   promises: [
     [l("No ads, no analytics", "Reklam ve analitik yok"), l("No advertising, advertising ID, third-party analytics or tracking tools in the app.", "Uygulamada reklam, reklam kimliği, üçüncü taraf analitik ya da izleme aracı yok.")],
     [l("Without an account, progress stays on the device", "Hesap yoksa ilerleme cihazda kalır"), l("Which words were met and where on the map: kept on the device. With a parent account, a copy is kept with your account.", "Hangi kelimelerle tanıştığı ve haritada nerede olduğu cihazda tutulur. Ebeveyn hesabı açarsanız bir kopyası hesabınıza bağlı saklanır.")],
@@ -94,14 +94,15 @@ export const H = {
   policyBtn: l("Privacy Policy", "Gizlilik Politikası"),
   guideBtn: l("Parents' guide", "Ebeveyn rehberi"),
   gateEyebrow: l("Parental gate", "Ebeveyn kapısı"),
-  gateP: l("The account, settings and downloads sit behind a grown-up's question.", "Hesap, ayarlar ve indirmeler bir yetişkin sorusunun arkasında."),
-  gateQ: l("yedi kere altı kaç eder?", "yedi kere altı kaç eder?"),
-  gateSmall: l("The question is written in words (in Turkish: \"what is seven times six?\"); a child who can't read can't tell what is asked. A wrong answer brings a new question.",
-               "Soru yazıyla sorulur; okumayı bilmeyen bir çocuk ne sorulduğunu anlayamaz. Yanlış cevapta yeni bir soru gelir."),
+  gateP: l("The account, the parent's area and downloads sit behind a grown-up's question.", "Hesap, ebeveyn alanı ve indirmeler bir yetişkin sorusunun arkasında."),
+  gateAsk: l("Type this number in figures:", "Bu sayıyı rakamla yazın:"),
+  gateQ: l("altmış dört", "altmış dört"),
+  gateSmall: l("A number written in Turkish words (\"sixty-four\"), typed in figures. There is nothing to choose from; a child who can't read can't tell what is asked. A wrong answer brings a new number.",
+               "Sayı yazıyla yazılır, rakamla girilir. Seçenek yoktur; okumayı bilmeyen bir çocuk ne sorulduğunu anlayamaz. Yanlış cevapta yeni bir sayı gelir."),
 
   growEyebrow: l("For parents", "Ebeveynler için"),
   growH2: l("See your child's journey", "Çocuğunuzun yolculuğunu görün"),
-  growLead: l("Behind the parental gate, the parent's area shows what the app has seen. It stays on the device.", "Ebeveyn kapısının arkasındaki ebeveyn alanı, uygulamanın gördüklerini gösterir. Bilgiler cihazda kalır."),
+  growLead: l("Behind the parental gate, the parent's area shows what the app has seen. It is kept on the device, and with a parent account also with the account.", "Ebeveyn kapısının arkasındaki ebeveyn alanı, uygulamanın gördüklerini gösterir. Bilgiler cihazda, ebeveyn hesabı varsa hesapta da tutulur."),
   grow: [
     [l("Which words were met?", "Hangi kelimelerle tanıştı?"), l("The words met in each world, and when.", "Her dünyada karşılaştığı kelimeler ve ne zaman.")],
     [l("How is it going?", "Nasıl ilerliyor?"), l("Where on the map, which worlds are finished, which words were found with help.", "Haritada nerede, hangi dünyaları bitirdi, hangi kelimeleri yardımla buldu.")],

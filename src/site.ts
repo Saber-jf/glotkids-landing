@@ -15,7 +15,11 @@ export const SITE = {
   url: "https://glotkids.imtiyaz.io",
   ages: "4–8",
   /** the date the legal texts took effect, ISO "YYYY-MM-DD" */
-  legalUpdated: "2026-11-20",
+  legalUpdated: "2026-11-27",
   /** one address for everything (user, 2026-11-23) */
   email: "support@imtiyaz.io",
+  /** who publishes the app, as imtiyaz.io and the Apple developer account name it (2026-11-27) */
+  company: "Imtiyaz LTD",
+  address: "71-75 Shelton Street, Covent Garden, London, United Kingdom",
+  addressTr: "71-75 Shelton Street, Covent Garden, Londra, Birleşik Krallık",
 };

@@ -161,8 +161,9 @@
 .promises .tick { flex: 0 0 34px; height: 34px; border-radius: 50%; background: var(--leaf); color: #fff; display: grid; place-items: center; font-weight: 700; border-bottom: 3px solid var(--leaf-lip); }
 .gate { background: #fff; border-radius: var(--r-lg); padding: 26px; border-bottom: 8px solid var(--line); text-align: center; }
 .gate .q { font-family: var(--display); font-weight: 600; font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 10px 0 14px; }
-.gate .keys { display: grid; grid-template-columns: repeat(3, 64px); gap: 10px; justify-content: center; margin-bottom: 12px; }
-.gate .keys span { height: 56px; border-radius: 14px; background: var(--sky-soft); border-bottom: 5px solid #9fd3ee; display: grid; place-items: center; font-family: var(--display); font-weight: 600; font-size: 1.4rem; }
+.gate .ask { color: var(--ink-soft); font-weight: 600; margin-top: 12px; }
+.gate .q { margin-top: 4px; }
+.gate .field { width: 120px; height: 56px; margin: 0 auto 12px; border-radius: 14px; background: #fff; border: 2px solid #9fd3ee; display: grid; place-items: center; font-family: var(--display); font-weight: 600; font-size: 1.4rem; letter-spacing: 0.08em; }
 .gate small { color: var(--ink-soft); }
 @media (max-width: 860px) { .trust-grid { grid-template-columns: 1fr; } }
 
